@@ -1,28 +1,37 @@
 import React,{ useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Image } from 'react-native';
+import Quotation from './components/quotation';
 
 export default function App() {
   /*----basic-data-storages----*/
   const [showingQuote, setShowingQuote] = useState({autor:"Vaši vývojári", text:"Pre získanie citátu použi tlačidlo..."});
   
   /*----all-functions----------*/
-
+  const getRandomInt = (max) => {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+  
+  const getQuoteHandller = () => {
+      console.log("pressed")
+  }
 
   return (
     <View style={styles.container}>
       <View /*this is another container wich is not full width large*/ >
         {/*there will go name of the app, similiar to tittle*/}
         <View /*This is going to be container for quotation and buttons*/>
-            {/*there is going to be component quotation*/}
-            <View /*this is button section with opacities*/ >
+            <Quotation quote={showingQuote}/>
+            
+            <View /*this is button section */ >
               <Button 
                 title='Ziskaj citát'
+                onPress={()=>getQuoteHandller()}
               />
               <TouchableOpacity>
-                <Image source={require()} /*there should go setting icon*/ />
-                <Text /*temporary*/ >Nastavenia</Text>
+                <Image source={require("./assets/settingsIcon128px.png")}/>
               </TouchableOpacity>
             </View>
+
         </View>
       </View>
     </View>
