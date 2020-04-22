@@ -18,18 +18,17 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View /*this is another container wich is not full width large*/ >
-        {/*there will go name of the app, similiar to tittle*/}
-        <View /*This is going to be container for quotation and buttons*/>
-            <Quotation quote={showingQuote}/>
+      <View style={styles.parentOfContent}>
+        <Text style={styles.heading}>Daily Quotes</Text>
+        <View style={styles.content}>
+            <Quotation quote={showingQuote} />
             
-            <View /*this is button section */ >
-              <Button 
-                title='Ziskaj citát'
-                onPress={()=>getQuoteHandller()}
-              />
-              <TouchableOpacity>
-                <Image source={require("./assets/settingsIcon128px.png")}/>
+            <View style={styles.buttonSection} >
+              <TouchableOpacity onPress={()=>getQuoteHandller()}>
+                <Text >Ziskaj citát</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.settingsBtn} >
+                <Image source={require("./assets/settingsIcon50px.png")} />
               </TouchableOpacity>
             </View>
 
@@ -42,8 +41,36 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'white',
+    alignContent: 'center'
   },
+  
+  parentOfContent: {
+    paddingTop:"20%",
+    backgroundColor: 'yellow'
+  },
+  
+  heading: {
+    backgroundColor: 'green',
+    textAlign: "center",
+    fontSize: 50
+  },
+  
+  content: {
+    backgroundColor:'orange',
+    padding: '10%',
+    height: '100%'
+  },
+  
+  buttonSection: {
+    backgroundColor:'purple',
+    flex: 1,
+    justifyContent:"space-between",
+    alignItems: 'center'
+  },
+  
+  settingsBtn: {
+    backgroundColor:'gold',
+  }
+
 });
