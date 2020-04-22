@@ -21,11 +21,11 @@ export default function App() {
       <View style={styles.parentOfContent}>
         <Text style={styles.heading}>Daily Quotes</Text>
         <View style={styles.content}>
-            <Quotation quote={showingQuote} />
+            <Quotation quote={showingQuote} style={styles.quoteComponent}/>
             
             <View style={styles.buttonSection} >
               <TouchableOpacity onPress={()=>getQuoteHandller()}>
-                <Text >Ziskaj citát</Text>
+                <Text style={styles.quoteButton}>Ziskaj citát</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.settingsBtn} >
                 <Image source={require("./assets/settingsIcon50px.png")} />
@@ -47,30 +47,37 @@ const styles = StyleSheet.create({
   
   parentOfContent: {
     paddingTop:"20%",
-    backgroundColor: 'yellow'
   },
   
   heading: {
-    backgroundColor: 'green',
     textAlign: "center",
     fontSize: 50
   },
   
   content: {
-    backgroundColor:'orange',
-    padding: '10%',
+    padding: '5%',
     height: '100%'
   },
   
   buttonSection: {
-    backgroundColor:'purple',
     flex: 1,
     justifyContent:"space-between",
     alignItems: 'center'
   },
   
   settingsBtn: {
-    backgroundColor:'gold',
+    marginTop: 30,
+    backgroundColor:'grey',
+    borderRadius: 10,
+  
+  },
+
+  quoteButton: {
+    padding: 20,
+    backgroundColor:'grey',
+    borderRadius: 10,
+    overflow:'hidden'
+    
   }
 
 });
