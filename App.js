@@ -5,14 +5,15 @@ import Quotation from './components/quotation';
 export default function App() {
   /*----basic-data-storages----*/
   const [showingQuote, setShowingQuote] = useState({autor:"Vaši vývojári", text:"Pre získanie citátu použi tlačidlo..."});
-  
+  const data = require("./public/data.json");
+
   /*----all-functions----------*/
   const getRandomInt = (max) => {
     return Math.floor(Math.random() * Math.floor(max));
   }
   
   const getQuoteHandller = () => {
-      console.log("pressed")
+      setShowingQuote(data.slovakQuotes[getRandomInt(data.slovakQuotes.length)]);
   }
 
   return (
