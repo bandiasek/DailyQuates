@@ -27,7 +27,7 @@ export default function Quotation({quote}) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 6,
+        flex: 3,
         alignItems: 'center',
     },
     

@@ -2,7 +2,7 @@ import React,{ useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Image } from 'react-native';
 import Quotation from '../components/quotation';
 
-export default function Home() {
+export default function Home({ navigation }) {
   /*----basic-data-storages----*/
   const [showingQuote, setShowingQuote] = useState({autor:"Vaši vývojári", text:"Pre získanie citátu použi tlačidlo..."});
   const data = require("../public/data.json");
@@ -16,6 +16,10 @@ export default function Home() {
       setShowingQuote(data.slovakQuotes[getRandomInt(data.slovakQuotes.length)]);
   }
 
+  const settingsHandller = () => {
+    navigation.navigate('Settings');
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.parentOfContent}>
@@ -27,7 +31,7 @@ export default function Home() {
               <TouchableOpacity onPress={()=>getQuoteHandller()}>
                 <Text style={styles.quoteButton}>Ziskaj citát</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.settingsBtn} >
+              <TouchableOpacity style={styles.settingsBtn} onPress={()=>{settingsHandller()}}>
                 <Image source={require("../assets/settingsIcon50px.png")} />
               </TouchableOpacity>
             </View>
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
   },
   
   parentOfContent: {
-    paddingTop:"20%",
+    paddingTop:'5%'
   },
   
   heading: {
@@ -66,14 +70,17 @@ const styles = StyleSheet.create({
   },
   
   settingsBtn: {
-    marginTop: 30,
     backgroundColor:'grey',
     borderRadius: 10,
+    position: 'absolute',
+    top: '40%'
   
   },
 
   quoteButton: {
-    padding: 20,
+    padding: 10,
+    fontSize:20,
+    fontWeight: 'bold',
     backgroundColor:'grey',
     borderRadius: 10,
     overflow:'hidden'
