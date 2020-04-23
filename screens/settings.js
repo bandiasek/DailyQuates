@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { settingsStyle } from '../style/settingsStyle';
+
 export default function App() {
   const [Language, SetLanguage] = useState('Slovak');
   return (

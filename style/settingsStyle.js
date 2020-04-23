@@ -13,7 +13,8 @@ export const settingsStyle = StyleSheet.create({
       
       header: {
         textAlign: "center",
-        fontSize: 30
+        fontSize: 30,
+        color: 'black',
       },
       
       content: {
