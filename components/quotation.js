@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
-import { quotationStyles } from '../style/quotationStyle';
+import { quotationStyles } from '../style/quotationStyle.js';
 
 export default function Quotation({quote}) {
     return(
