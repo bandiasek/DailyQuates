@@ -6,8 +6,7 @@ import { homeStyle } from '../style/homeStyle';
 export default function Home({ navigation }) {
   /*----basic-data-storages----*/
   const [language, setLanguage] = useState({});
-  const [choosenLan, setChosenLan] = useState("english")
-  const [showingQuote, setShowingQuote] = useState({autor:language.author, text:"Pre získanie citátu použi tlačidlo..."});
+  const [showingQuote, setShowingQuote] = useState({autor:language.home.author, text:language.home.text});
   const data = require("../public/data.json");
 
   /*----all-functions----------*/
@@ -34,7 +33,7 @@ export default function Home({ navigation }) {
             
             <View style={homeStyle.buttonSection} >
               <TouchableOpacity onPress={()=>getQuoteHandller()}>
-                <Text style={homeStyle.quoteButton}>Ziskaj citát</Text>
+                 <Text style={homeStyle.quoteButton}>{language.home.button}}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={homeStyle.settingsBtn} onPress={()=>{settingsHandller()}}>
                 <Image source={require("../assets/settingsIcon50px.png")} />
