@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import React from 'react';
+import { Text, View, Button } from 'react-native';
 import { settingsStyle } from '../style/settingsStyle';
 
-export default function App() {
-  const [Language, SetLanguage] = useState('Slovak');
+export default function Settings({navigation }) {
   return (
     <View>
       <View style={settingsStyle.container}>
@@ -15,10 +14,10 @@ export default function App() {
             settingsStyle.container,
           ]}>
           <View style={settingsStyle.button}>
-            <Button title={'English'} onPress={() => SetLanguage('English')} />
+            <Button title={'English'} onPress={() => {navigation.setSettings("english");alert("Language has been set")}} />
           </View>
           <View style={settingsStyle.button}>
-            <Button title={'Slovak'} onPress={() => SetLanguage('Slovak')} />
+            <Button title={'Slovak'} onPress={() => {navigation.setSettings("slovak");alert("Jazyk bol nastavený")}} />
           </View>
         </View>
       </View>

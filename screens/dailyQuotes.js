@@ -1,29 +1,25 @@
 import React,{ useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Image, AsyncStorage } from 'react-native';
 import Quotation from '../components/quotation';
 import { homeStyle } from '../style/homeStyle';
 
-export default function Home({ navigation }) {
-  /*----basic-data-storages----*/
-  
-  /*-----reading-settings------*/
-  const settingsData = require("../public/settings.json");
+export default function DailyQuotes({ navigation }) {
+
+    /*-----reading-settings------*/
   const english = require("../public/english.json")
   const slovak = require("../public/slovak.json");
-    var language = {};
+    var language = slovak;
 
-    if(settingsData.language=="english"){
+    if(getSettings=="english"){
         language = english;
-    }else if(settingsData.language=="slovak"){
+    }else if(getSettings=="slovak"){
         language = slovak;
     }else {console.log("sme v riciiiii")}   
-
   
- 
-  /*---end-of-reading-settings--*/
-  
-  const [showingQuote, setShowingQuote] = useState({autor:language.home.author, text:language.home.text});
+    /*----basic-data-storages----*/
   const data = require("../public/data.json");
+  const [showingQuote, setShowingQuote] = useState({autor:language.home.author, text:language.home.text});
+
 
   /*----all-functions----------*/
   const getRandomInt = (max) => {
@@ -35,11 +31,24 @@ export default function Home({ navigation }) {
   }
 
   const settingsHandller = () => {
-    navigation.navigate('Settings');
+    navigation.navigate('Settings', setSettings);
   }
+
+  const setSettings = (userChoice) =>{
+    AsyncStorage.setItem('userChoice', userChoice);
+  }
+
+  const getSettings = async () => {
+    try {
+        let userChoice = await AsyncStorage.getItem('userChoice');
+    }catch(error){
+        alert(error);
+    }
+  }
+
   /*----Some-Life-cycle--------*/
   
-
+  /*------render-section------*/
   return (
     <View style={homeStyle.container}>
       <View style={homeStyle.parentOfContent}>
