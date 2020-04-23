@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, Image } from 'react-native';
 import Quotation from '../components/quotation';
+import { homeStyle } from '../style/homeStyle';
 
 export default function Home({ navigation }) {
   /*----basic-data-storages----*/
@@ -21,17 +22,17 @@ export default function Home({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.parentOfContent}>
-        <Text style={styles.heading}>Daily Quotes</Text>
-        <View style={styles.content}>
-            <Quotation quote={showingQuote} style={styles.quoteComponent}/>
+    <View style={homeStyle.container}>
+      <View style={homeStyle.parentOfContent}>
+        <Text style={homeStyle.heading}>Daily Quotes</Text>
+        <View style={homeStyle.content}>
+            <Quotation quote={showingQuote} style={homeStyle.quoteComponent}/>
             
-            <View style={styles.buttonSection} >
+            <View style={homeStyle.buttonSection} >
               <TouchableOpacity onPress={()=>getQuoteHandller()}>
-                <Text style={styles.quoteButton}>Ziskaj citát</Text>
+                <Text style={homeStyle.quoteButton}>Ziskaj citát</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.settingsBtn} onPress={()=>{settingsHandller()}}>
+              <TouchableOpacity style={homeStyle.settingsBtn} onPress={()=>{settingsHandller()}}>
                 <Image source={require("../assets/settingsIcon50px.png")} />
               </TouchableOpacity>
             </View>
@@ -41,50 +42,3 @@ export default function Home({ navigation }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignContent: 'center'
-  },
-  
-  parentOfContent: {
-    paddingTop:'5%'
-  },
-  
-  heading: {
-    textAlign: "center",
-    fontSize: 50
-  },
-  
-  content: {
-    padding: '5%',
-    height: '100%'
-  },
-  
-  buttonSection: {
-    flex: 1,
-    justifyContent:"space-between",
-    alignItems: 'center'
-  },
-  
-  settingsBtn: {
-    backgroundColor:'grey',
-    borderRadius: 10,
-    position: 'absolute',
-    top: '40%'
-  
-  },
-
-  quoteButton: {
-    padding: 10,
-    fontSize:20,
-    fontWeight: 'bold',
-    backgroundColor:'grey',
-    borderRadius: 10,
-    overflow:'hidden'
-    
-  }
-
-});
