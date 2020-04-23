@@ -5,7 +5,9 @@ import { homeStyle } from '../style/homeStyle';
 
 export default function Home({ navigation }) {
   /*----basic-data-storages----*/
-  const [showingQuote, setShowingQuote] = useState({autor:"Vaši vývojári", text:"Pre získanie citátu použi tlačidlo..."});
+  const [language, setLanguage] = useState({});
+  const [choosenLan, setChosenLan] = useState("english")
+  const [showingQuote, setShowingQuote] = useState({autor:language.author, text:"Pre získanie citátu použi tlačidlo..."});
   const data = require("../public/data.json");
 
   /*----all-functions----------*/
@@ -20,6 +22,8 @@ export default function Home({ navigation }) {
   const settingsHandller = () => {
     navigation.navigate('Settings');
   }
+  /*----Some-Life-cycle--------*/
+  
 
   return (
     <View style={homeStyle.container}>

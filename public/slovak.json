@@ -1,0 +1,15 @@
+{
+    "home": {
+        "author": "Vaši vývojári.",
+        "text": "Pre získanie citátu použi tlačidlo...",
+        "button": "Získaj citát"
+    },
+    "quotation": {
+        "quote": "Citát",
+        "date": "Dátum",
+        "author": "Autor"
+    },
+    "settings": {
+        "heading": "Vyberte jazyk"
+    }
+}

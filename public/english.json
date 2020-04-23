@@ -1,0 +1,15 @@
+{
+    "home": {
+        "author": "Your developers.",
+        "text": "Use the button to get a quote...",
+        "button": "Get quote"
+    },
+    "quotation": {
+        "quote": "quote",
+        "date": "date",
+        "author": "author"
+    },
+    "settings": {
+        "heading": "Choose language"
+    }
+}
