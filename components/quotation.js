@@ -7,13 +7,13 @@ export default function Quotation({quote, language}) {
         <View style={quotationStyles.container}>
             <ImageBackground style={quotationStyles.background} source={require("../assets/backgroundQuote.png")}/>
             <View style={quotationStyles.quote}>
-    <Text style={{paddingLeft:'70%',fontSize: 20,fontWeight: 'bold',paddingBottom:10, paddingTop:30}}>[{language.quotation.quote}}]</Text>
+    <Text style={{paddingLeft:'70%',fontSize: 20,fontWeight: 'bold',paddingBottom:10, paddingTop:30}}>[{language.quotation.quote}]</Text>
                 <Text style={quotationStyles.quoteText}>{quote.text}</Text>
             </View>
 
             <View style={quotationStyles.lowerBar}>
                 <View style={{alignItems:'center',paddingRight:25}}>
-                    <Text style={quotationStyles.naming}>[{language.quotation.date}}]</Text>
+                    <Text style={quotationStyles.naming}>[{language.quotation.date}]</Text>
                     <Text>.....</Text>
                 </View>
                 <View style={{alignItems:'center',paddingLeft:25}}>
