@@ -41,5 +41,44 @@
             "text":"Nastaviť si hranice znamená mať rád sám seba aj za cenu toho, že by sa to ostatným nemuselo páčiť."
         }
     ],
-    "englishQuotes":[]
+    "englishQuotes":[{
+        "autor":"Unknown",
+        "text":"Dream as if you'll live forever. Live as if you'll die today."
+    },
+    {
+        "autor":"Unknown",
+        "text":"Anyone who stops learning is old, whether at twenty or eighty. Anyone who keeps learning stays young."
+    },
+    {
+        "autor":"Unknown",
+        "text":"Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment."
+    },
+    {
+        "autor":"Unknown",
+        "text":"Give a girl the right shoes, and she can conquer the world."
+    },
+    {
+        "autor":"Unknown",
+        "text":"Only two things are infinite, the universe and human stupidity, and I´m not sure about the universe."
+    },
+    {
+        "autor":"Unknown",
+        "text":"While we are postponing, life speeds by."
+    },
+    {
+        "autor":"Unknown",
+        "text":"Tomorrow, life is too late. Live today."
+    },
+    {
+        "autor":"Unknown",
+        "text":"Never, never, never, never give up."
+    },
+    {
+        "autor":"Unknown",
+        "text":"And the trouble is, if you don´t risk anything, you risk even more."
+    },
+    {
+        "autor":"Unknown",
+        "text":"Only when we are no longer afraid do we begin to live."
+    }]
 }
