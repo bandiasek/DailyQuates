@@ -14,10 +14,10 @@ export default function Settings({navigation }) {
             settingsStyle.container,
           ]}>
           <View style={settingsStyle.button}>
-            <Button title={'English'} onPress={() => {navigation.setSettings("english");alert("Language has been set")}} />
+            <Button title={'English'} onPress={() => {alert("Language has been set")}} />
           </View>
           <View style={settingsStyle.button}>
-            <Button title={'Slovak'} onPress={() => {navigation.setSettings("slovak");alert("Jazyk bol nastavený")}} />
+            <Button title={'Slovak'} onPress={() => {alert("Jazyk bol nastavený")}} />
           </View>
         </View>
       </View>
