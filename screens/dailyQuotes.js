@@ -9,18 +9,17 @@ export default function DailyQuotes({ navigation }) {
   const english = require("../public/english.json")
   const slovak = require("../public/slovak.json");
   const [userChoice, setUserChoice] = useState("slovak");  
-    var language = slovak;
+    var languageOfApp = slovak;
   
 
     if(userChoice=="english"){
-        language = english;
+        languageOfApp = english;
     }else if(userChoice=="slovak"){
-        language = slovak;
+        languageOfApp = slovak;
     }else {console.log("Failed to load language")}   
   
     /*----basic-data-storages----*/
-  const data = require("../public/data.json");
-  const [showingQuote, setShowingQuote] = useState({autor:language.home.author, text:language.home.text});
+  const [showingQuote, setShowingQuote] = useState({autor:languageOfApp.home.author, text:languageOfApp.home.text});
 
 
   /*----all-functions----------*/
@@ -29,7 +28,13 @@ export default function DailyQuotes({ navigation }) {
   }
   
   const getQuoteHandller = () => {
-      setShowingQuote(data.slovakQuotes[getRandomInt(data.slovakQuotes.length)]);
+    if(userChoice=="english"){
+      setShowingQuote(languageOfApp.quotes[getRandomInt(languageOfApp.quotes.length)]);
+
+  }else if(userChoice=="slovak"){
+      setShowingQuote(languageOfApp.quotes[getRandomInt(languageOfApp.quotes.length)]);
+
+  }else {console.log("Failed to load quote")}   
   }
 
   const settingsHandller = () => {
@@ -55,19 +60,31 @@ export default function DailyQuotes({ navigation }) {
   return (
     <View style={homeStyle.container}>
       <View style={homeStyle.parentOfContent}>
-        <Text style={homeStyle.heading}>Daily Quotes</Text>
+        <Text style={homeStyle.heading}>
+            Daily Quotes
+          </Text>
         <View style={homeStyle.content}>
-            <Quotation quote={showingQuote} language={language} style={homeStyle.quoteComponent}/>
+            <Quotation 
+                quote={showingQuote} 
+                language={languageOfApp} 
+                style={homeStyle.quoteComponent}
+              />
             
             <View style={homeStyle.buttonSection} >
-              <TouchableOpacity onPress={()=>getQuoteHandller()}>
-                 <Text style={homeStyle.quoteButton}>{language.home.button}</Text>
+              <TouchableOpacity 
+                onPress={()=>getQuoteHandller()}
+                >
+                 <Text style={homeStyle.quoteButton}>
+                      {languageOfApp.home.button}
+                   </Text>
               </TouchableOpacity>
-              <TouchableOpacity style={homeStyle.settingsBtn} onPress={()=>{settingsHandller()}}>
+              <TouchableOpacity 
+                  style={homeStyle.settingsBtn} 
+                  onPress={()=>{settingsHandller()}}
+                >
                 <Image source={require("../assets/settingsIcon50px.png")} />
               </TouchableOpacity>
             </View>
-
         </View>
       </View>
     </View>
