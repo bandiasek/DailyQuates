@@ -1,5 +1,5 @@
-import React,{ useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button, Image, AsyncStorage } from 'react-native';
+import React,{ useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Image, AsyncStorage } from 'react-native';
 import Quotation from '../components/quotation';
 import { homeStyle } from '../style/homeStyle';
 
@@ -8,13 +8,15 @@ export default function DailyQuotes({ navigation }) {
     /*-----reading-settings------*/
   const english = require("../public/english.json")
   const slovak = require("../public/slovak.json");
+  const [userChoice, setUserChoice] = useState("slovak");  
     var language = slovak;
+  
 
-    if(getSettings=="english"){
+    if(userChoice=="english"){
         language = english;
-    }else if(getSettings=="slovak"){
+    }else if(userChoice=="slovak"){
         language = slovak;
-    }else {console.log("sme v riciiiii")}   
+    }else {console.log("Failed to load language")}   
   
     /*----basic-data-storages----*/
   const data = require("../public/data.json");
@@ -31,23 +33,24 @@ export default function DailyQuotes({ navigation }) {
   }
 
   const settingsHandller = () => {
-    navigation.navigate('Settings', setSettings);
-  }
-
-  const setSettings = (userChoice) =>{
-    AsyncStorage.setItem('userChoice', userChoice);
+    navigation.navigate('Settings');
   }
 
   const getSettings = async () => {
     try {
         let userChoice = await AsyncStorage.getItem('userChoice');
+        setUserChoice(userChoice);
+
     }catch(error){
         alert(error);
     }
   }
 
-  /*----Some-Life-cycle--------*/
-  
+  /*----------hooks------------*/
+    useEffect(()=>{
+      getSettings();
+      console.log("useEffect has been propped "+userChoice);
+    });
   /*------render-section------*/
   return (
     <View style={homeStyle.container}>
