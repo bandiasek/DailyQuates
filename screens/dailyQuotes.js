@@ -16,7 +16,7 @@ export default function DailyQuotes({ navigation }) {
         languageOfApp = english;
     }else if(userChoice=="slovak"){
         languageOfApp = slovak;
-    }else {console.log("Failed to load language")}   
+    }else {console.log("Failed to load language ")}   
   
     /*----basic-data-storages----*/
   const [showingQuote, setShowingQuote] = useState({autor:languageOfApp.home.author, text:languageOfApp.home.text});
