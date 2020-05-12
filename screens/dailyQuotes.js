@@ -5,16 +5,13 @@ import { homeStyle } from '../style/homeStyle';
 
 export default function DailyQuotes({ navigation }) {
 
-    /*-----reading-settings------*/
-  const english = require("../public/english.json")
-  const slovak = require("../public/slovak.json");
-  const [userChoice, setUserChoice] = useState("slovak");  
-  const [languageOfApp, setLanguageOfApp] = useState(slovak);
-  
-    
     /*----basic-data-storages----*/
-  const [showingQuote, setShowingQuote] = useState({autor:languageOfApp.home.author, text:languageOfApp.home.text});
-
+  const [showingQuote, setShowingQuote] = useState({
+      autor:languageOfApp.home.author, 
+      text:languageOfApp.home.text
+    });
+  var defaultLanguage = require("../public/default.json");
+  const [languageOfApp, setLanguageOfApp] = useState(defaultLanguage);
 
   /*----all-functions----------*/
   const getRandomInt = (max) => {
@@ -22,40 +19,38 @@ export default function DailyQuotes({ navigation }) {
   }
   
   const getQuoteHandller = () => {
-    if(userChoice=="english"){
+    try{ 
       setShowingQuote(languageOfApp.quotes[getRandomInt(languageOfApp.quotes.length)]);
 
-  }else if(userChoice=="slovak"){
-      setShowingQuote(languageOfApp.quotes[getRandomInt(languageOfApp.quotes.length)]);
+    }catch(error){
 
-  }else {console.log("Failed to load quote")}   
-  }
+      alert(error);
+    }
+  } 
 
   const settingsHandller = () => {
     navigation.navigate('Settings');
   }
 
-  const getSettings = async () => {
-    try {
-        let userChoice = await AsyncStorage.getItem('userChoice');
-        setUserChoice(userChoice);
-
-    }catch(error){
-        alert(error);
-    }
+  const languageCheck = (userChoice) => {
+      console.log('checking language in homeScreen/dailyQuotes>> '+userChoice);
+      
+      if(userChoice=="english"){
+         
+        var english = require("../public/english.json");
+        setLanguageOfApp(english);
+      
+      }else if(userChoice=="slovak"){
+        
+        var slovak = require("../public/slovak.json");
+        setLanguageOfApp(slovak);
+      
+      }else {console.log("Failed to load language ")} 
   }
 
   /*----------hooks------------*/
     useEffect(()=>{
-      getSettings();
-      console.log("useEffect has been propped "+userChoice);
-
-      if(userChoice=="english"){
-        setLanguageOfApp(english);
-      }else if(userChoice=="slovak"){
-        setLanguageOfApp(slovak)
-      }else {console.log("Failed to load language ")}   
-
+      languageCheck(navigation.userChoice);
     });
   /*------render-section------*/
   return (

@@ -9,7 +9,7 @@ const screens = {
         screen: FirstStart,
         navigationOptions: {
             title: 'First Start',
-            header: null  
+            headerShown: false 
         }
     },
     

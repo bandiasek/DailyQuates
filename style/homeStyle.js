@@ -14,7 +14,8 @@ export const homeStyle = StyleSheet.create({
       
       heading: {
         textAlign: "center",
-        fontSize: 50
+        fontSize: 50,
+        marginTop: 25
       },
       
       content: {
