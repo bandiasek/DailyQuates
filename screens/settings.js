@@ -3,36 +3,46 @@ import { Text, View, Button, AsyncStorage } from 'react-native';
 import { settingsStyle } from '../style/settingsStyle';
 
 export default function Settings({navigation }) {
+  
   /*Async storage to store user choice*/
   const setSettings = (userChoice) =>{
     AsyncStorage.setItem('userChoice', userChoice);
   }
   
-  const temporary = async () => {
+  const reset = async () => {
       try {
           await AsyncStorage.removeItem('userChoice');
-          alert('done');
+          alert('Reštartujte aplikáciu pre dokončenie a aplikovanie zmien');
       }
       catch(exception) {
           alert(exception);
       }
-  
+  }
+
+  const backHandler = () => {
+    navigation.pop();
   }
 
   return (
-    <View>
-      <View style={settingsStyle.container}>
-        <Text style={settingsStyle.header}>Set Language</Text>
-        <View>
-          <View style={settingsStyle.button}>
-            <Button title={'English'} onPress={() => {alert("Language has been set");   setSettings("english");}} />
+    <View style={settingsStyle.container}>
+
+      <View style={settingsStyle.section}>
+        <Text style={settingsStyle.headings} >Notifikácie</Text>
+          <View>
+              <Button title='ano' />
+              <Button title='nie' />
           </View>
-          <View style={settingsStyle.button}>
-            <Button title={'Slovak'} onPress={() => {alert("Jazyk bol nastavený");    setSettings("slovak");}} />
-          </View>
-          <Button title = {'remove'} onPress={()=> {temporary();}} />
-        </View>
       </View>
+
+      <View style={settingsStyle.section}>
+        <Text style={settingsStyle.headings} >Zmena jazyka</Text>
+              <Button title='Zmena jazyka' onPress={()=> {reset();}}/>
+      </View>
+
+      <View style={settingsStyle.section}>
+        <Button title='Nas5' onPress={()=>{backHandler();}}/>
+      </View>
+
     </View>
   );
 }
