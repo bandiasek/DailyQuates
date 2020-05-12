@@ -6,17 +6,26 @@ import FirstStart from '../screens/firstStart';
 
 const screens = {
     FirstStart: {
-        screen: FirstStart
+        screen: FirstStart,
+        navigationOptions: {
+            title: 'First Start',
+            header: null  
+        }
     },
     
     DailyQuotes: {
-        screen: DailyQuotes
+        screen: DailyQuotes,
+        navigationOptions: {
+            title: 'Daily Quotes',
+            header: null  
+        }
     },
 
     Settings: {
         screen: Settings
     }
 };
+
 
 const HomeStack = createStackNavigator(screens);
 
