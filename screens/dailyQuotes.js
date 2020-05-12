@@ -1,17 +1,17 @@
 import React,{ useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, AsyncStorage } from 'react-native';
+import { Text, View, TouchableOpacity, Image} from 'react-native';
 import Quotation from '../components/quotation';
 import { homeStyle } from '../style/homeStyle';
 
 export default function DailyQuotes({ navigation }) {
 
     /*----basic-data-storages----*/
-  const [showingQuote, setShowingQuote] = useState({
-      autor:languageOfApp.home.author, 
-      text:languageOfApp.home.text
+    const defaultLanguage = require("../public/default.json");
+    const [languageOfApp, setLanguageOfApp] = useState(defaultLanguage);
+    const [showingQuote, setShowingQuote] = useState({
+      autor:navigation.getParam('author'), 
+      text:navigation.getParam('text')
     });
-  var defaultLanguage = require("../public/default.json");
-  const [languageOfApp, setLanguageOfApp] = useState(defaultLanguage);
 
   /*----all-functions----------*/
   const getRandomInt = (max) => {
@@ -50,7 +50,7 @@ export default function DailyQuotes({ navigation }) {
 
   /*----------hooks------------*/
     useEffect(()=>{
-      languageCheck(navigation.userChoice);
+      languageCheck(navigation.getParam('userChoice'));
     });
   /*------render-section------*/
   return (

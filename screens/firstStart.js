@@ -1,20 +1,36 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import { Text, View, AsyncStorage, TouchableOpacity } from 'react-native';
 import { firstStartStyle } from '../style/firstStartStyle';
 
 export default function FirstStart({navigation }) {
     
     /*----all-functions----------*/
-    const setSettings = (userChoice) =>{
+    const setUserChoice = (userChoice) =>{
         AsyncStorage.setItem('userChoice', userChoice);
-        navigation.navigate('DailyQuotes', {userChoice: userChoice});
-      }
 
-    const checkSettings = async () => {
+        if(userChoice=='english'){
+            AsyncStorage.setItem('author', 'Your developers.');
+            AsyncStorage.setItem('text', 'Use the button to get a quote...');
+            
+            navigation.navigate('DailyQuotes', {userChoice: userChoice, author: 'Your developers', text: 'Use the button to get a quote...'});
+        
+        }else if(userChoice=='slovak'){
+            AsyncStorage.setItem('author', 'Vaši vývojári.');
+            AsyncStorage.setItem('text', 'Pre získanie citátu použi tlačidlo...');
+            
+            navigation.navigate('DailyQuotes', {userChoice: userChoice, author: 'Vaši vývojári.', text: 'Pre získanie citátu použi tlačidlo...'});
+
+        }else{console.log('Failed to set default quote');}
+      }
+      
+
+    const checkSettings = async () => {   //treba este upravit a skomprimovat
         try {
             let asyncUserChoice = await AsyncStorage.getItem('userChoice');
+            let asyncAuthor = await AsyncStorage.getItem('author');
+            let asyncText = await AsyncStorage.getItem('text');
             if(asyncUserChoice!==null){
-                navigation.navigate('DailyQuotes', {userChoice: asyncUserChoice});
+                navigation.navigate('DailyQuotes', {userChoice: asyncUserChoice, author: asyncAuthor, text: asyncText});
             }
     
         }catch(error){
@@ -33,13 +49,13 @@ export default function FirstStart({navigation }) {
         <View style={firstStartStyle.buttonSection}>
 
             <TouchableOpacity
-                onPress={()=>{setSettings('english');}}
+                onPress={()=>{setUserChoice('english');}}
             >
                 <Text style={firstStartStyle.text} >English</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={()=>{setSettings('slovak');}}
+                onPress={()=>{setUserChoice('slovak');}}
             >
                 <Text style={firstStartStyle.text} >Slovak</Text>
             </TouchableOpacity>

@@ -17,12 +17,16 @@ const screens = {
         screen: DailyQuotes,
         navigationOptions: {
             title: 'Daily Quotes',
-            header: null  
+            headerShown: false  
         }
     },
 
     Settings: {
-        screen: Settings
+        screen: Settings,
+        navigationOptions: {
+            title: 'Daily Quotes',
+            headerShown: false  
+        }
     }
 };
 
