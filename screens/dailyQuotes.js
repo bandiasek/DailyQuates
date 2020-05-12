@@ -9,15 +9,9 @@ export default function DailyQuotes({ navigation }) {
   const english = require("../public/english.json")
   const slovak = require("../public/slovak.json");
   const [userChoice, setUserChoice] = useState("slovak");  
-    var languageOfApp = slovak;
+  const [languageOfApp, setLanguageOfApp] = useState(slovak);
   
-
-    if(userChoice=="english"){
-        languageOfApp = english;
-    }else if(userChoice=="slovak"){
-        languageOfApp = slovak;
-    }else {console.log("Failed to load language ")}   
-  
+    
     /*----basic-data-storages----*/
   const [showingQuote, setShowingQuote] = useState({autor:languageOfApp.home.author, text:languageOfApp.home.text});
 
@@ -55,6 +49,13 @@ export default function DailyQuotes({ navigation }) {
     useEffect(()=>{
       getSettings();
       console.log("useEffect has been propped "+userChoice);
+
+      if(userChoice=="english"){
+        setLanguageOfApp(english);
+      }else if(userChoice=="slovak"){
+        setLanguageOfApp(slovak)
+      }else {console.log("Failed to load language ")}   
+
     });
   /*------render-section------*/
   return (
