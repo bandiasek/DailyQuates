@@ -1,17 +1,19 @@
 import React, { useEffect, useState} from 'react';
 import { Text, View, AsyncStorage, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { authStyle } from '../style/authStyle';
-import { disableExpoCliLogging } from 'expo/build/logs/Logs';
-import LanguageSetting from './languageSetting';
+import { TextInput } from 'react-native-gesture-handler';
+
 
 export default function Auth({navigation }) {
      /*----all-data---------------*/
-    const [userDetails, setUserDetails] = useState({
-        username: '',
-        password:''
-    });
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
     /*----all-functions----------*/
+    const login = () => {
+        alert("tested");
+    }
+
     const checkLogin = async () => {
         try{
             var value = await AsyncStorage.getItem('user');
@@ -31,6 +33,30 @@ export default function Auth({navigation }) {
     });
     
   return (
-    
+    <KeyboardAvoidingView behavior='padding' style={authStyle.wrapper}>
+
+        <View style={authStyle.container} >
+
+                <Text style={authStyle.heading} > LOGIN </Text>
+                <TextInput
+                   style={authStyle.textInput} placeholder='Username'
+                   onChangeText={(event)=>setUsername(event)}
+                   underlineColorAndroid='transparent'
+                />
+                <TextInput
+                   style={authStyle.textInput} placeholder='Password'
+                   onChangeText={(event)=>setPassword(event)}
+                   underlineColorAndroid='transparent'
+                />
+
+                <TouchableOpacity
+                    style={authStyle.textInput}
+                    onPress={()=>login()}
+                >
+                    <Text>Press to login</Text>
+                </TouchableOpacity>
+        </View>
+
+    </KeyboardAvoidingView>
   );
 }
