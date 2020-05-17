@@ -11,7 +11,34 @@ export default function Auth({navigation }) {
 
     /*----all-functions----------*/
     const login = () => {
-        alert("tested");
+        
+        fetch(
+            'http://192.168.0.111:8000/api/login',
+            {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Cpmtemt-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+            
+            .then((response)=> response.json())
+            .then((res) => {
+
+                if(res.success === true){
+                    AsyncStorage.setItem('user', res.user);
+                    navigation.navigate('LanguageSetting');
+                }else{
+                    alert(res.message);
+                }
+
+            })
+            .done();
+
     }
 
     const checkLogin = async () => {
