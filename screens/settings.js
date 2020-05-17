@@ -5,9 +5,6 @@ import { settingsStyle } from '../style/settingsStyle';
 export default function Settings({navigation }) {
   
   /*Async storage to store user choice*/
-  const setSettings = (userChoice) =>{
-    AsyncStorage.setItem('userChoice', userChoice);
-  }
   
   const reset = async () => {
       try {
