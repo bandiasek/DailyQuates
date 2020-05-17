@@ -3,8 +3,17 @@ import { createAppContainer } from 'react-navigation';
 import DailyQuotes from '../screens/dailyQuotes';
 import Settings from '../screens/settings';
 import LanguageSetting from '../screens/languageSetting';
+import Auth from '../screens/auth';
 
 const screens = {
+    Auth: {
+        screen: Auth,
+        navigationOptions: {
+            title: 'Auth',
+            headerShown: false 
+        }
+    },
+    
     LanguageSetting: {
         screen: LanguageSetting,
         navigationOptions: {

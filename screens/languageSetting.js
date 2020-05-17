@@ -40,7 +40,7 @@ export default function LanguageSetting({navigation }) {
 
     /*----all-hooks--------------*/
     useEffect(()=>{
-        console.log('first start of the App>> ----checking-----');
+        console.log('Language choosing page has been loaded');
         checkSettings();
     });
     
