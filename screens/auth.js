@@ -35,7 +35,7 @@ export default function Auth({navigation }) {
   return (
     <KeyboardAvoidingView behavior='padding' style={authStyle.wrapper}>
 
-        <View style={authStyle.container} >
+        <View >
 
                 <Text style={authStyle.heading} > LOGIN </Text>
                 <TextInput
@@ -50,10 +50,10 @@ export default function Auth({navigation }) {
                 />
 
                 <TouchableOpacity
-                    style={authStyle.textInput}
+                    style={authStyle.loginBtn}
                     onPress={()=>login()}
                 >
-                    <Text>Press to login</Text>
+                    <Text style={authStyle.loginBtnText} >Press to login</Text>
                 </TouchableOpacity>
         </View>
 
