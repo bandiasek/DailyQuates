@@ -1,9 +1,9 @@
-import React, { useEffect} from 'react';
+import React, { useEffect, useState} from 'react';
 import { Text, View, AsyncStorage, TouchableOpacity } from 'react-native';
-import { firstStartStyle } from '../style/firstStartStyle';
+import { firstStartStyle } from '../style/languageSettingStyle';
 
-export default function FirstStart({navigation }) {
-    
+export default function LanguageSetting({navigation }) {
+
     /*----all-functions----------*/
     const setUserChoice = (userChoice) =>{
         AsyncStorage.setItem('userChoice', userChoice);
@@ -59,6 +59,8 @@ export default function FirstStart({navigation }) {
             >
                 <Text style={firstStartStyle.text} >Slovak</Text>
             </TouchableOpacity>
+        </View>
+        <View>
 
         </View>
     </View>

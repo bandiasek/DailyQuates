@@ -2,13 +2,13 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import DailyQuotes from '../screens/dailyQuotes';
 import Settings from '../screens/settings';
-import FirstStart from '../screens/firstStart';
+import LanguageSetting from '../screens/languageSetting';
 
 const screens = {
-    FirstStart: {
-        screen: FirstStart,
+    LanguageSetting: {
+        screen: LanguageSetting,
         navigationOptions: {
-            title: 'First Start',
+            title: 'Language Setting',
             headerShown: false 
         }
     },
