@@ -34,7 +34,7 @@ export default function Auth({navigation }) {
                     AsyncStorage.setItem('email', email);
                     navigation.navigate('LanguageSetting');
                 }else{
-                    alert(res.message);
+                    alert(res.error);
                 }
 
             })

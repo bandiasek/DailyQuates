@@ -5,7 +5,17 @@ import { settingsStyle } from '../style/settingsStyle';
 export default function Settings({navigation }) {
   
   /*Async storage to store user choice*/
-  
+  const logout = async () => {
+    try {
+        await AsyncStorage.removeItem('email');
+        alert('Reštartujte aplikáciu pre dokončenie a aplikovanie zmien');
+    }
+    catch(exception) {
+        alert(exception);
+    }
+}
+
+
   const reset = async () => {
       try {
           await AsyncStorage.removeItem('userChoice');
@@ -34,6 +44,11 @@ export default function Settings({navigation }) {
       <View style={settingsStyle.section}>
         <Text style={settingsStyle.headings} >Zmena jazyka</Text>
               <Button title='Zmena jazyka' onPress={()=> {reset();}}/>
+      </View>
+
+      <View style={settingsStyle.section}>
+        <Text style={settingsStyle.headings} >Zmena uzivatela</Text>
+              <Button title='Odhlasit sa' onPress={()=> {logout();}}/>
       </View>
 
       <View style={settingsStyle.section}>
