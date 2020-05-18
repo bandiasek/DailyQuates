@@ -6,12 +6,13 @@ import { TextInput } from 'react-native-gesture-handler';
 
 export default function Auth({navigation }) {
      /*----all-data---------------*/
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     /*----all-functions----------*/
     const login = () => {
-        
+        console.log('starting fetch mathod --->');
+
         fetch(
             'http://192.168.0.111:8000/api/login',
             {
@@ -21,16 +22,16 @@ export default function Auth({navigation }) {
                     'Cpmtemt-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    username: username,
+                    email: email,
                     password: password
                 })
             })
             
-            .then((response)=> response.json())
+            .then((response)=>response.json())
             .then((res) => {
-
-                if(res.success === true){
-                    AsyncStorage.setItem('user', res.user);
+                
+                if(res.success !==  null){
+                    AsyncStorage.setItem('email', email);
                     navigation.navigate('LanguageSetting');
                 }else{
                     alert(res.message);
@@ -38,12 +39,12 @@ export default function Auth({navigation }) {
 
             })
             .done();
-
+            console.log('fetch method is done');
     }
 
     const checkLogin = async () => {
         try{
-            var value = await AsyncStorage.getItem('user');
+            var value = await AsyncStorage.getItem('email');
             if(value!== null){
                 navigation.navigate('LanguageSetting');
             }
@@ -66,8 +67,8 @@ export default function Auth({navigation }) {
 
                 <Text style={authStyle.heading} > LOGIN </Text>
                 <TextInput
-                   style={authStyle.textInput} placeholder='Username'
-                   onChangeText={(event)=>setUsername(event)}
+                   style={authStyle.textInput} placeholder='Email'
+                   onChangeText={(event)=>setEmail(event)}
                    underlineColorAndroid='transparent'
                 />
                 <TextInput
