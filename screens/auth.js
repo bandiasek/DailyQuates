@@ -11,34 +11,39 @@ export default function Auth({navigation }) {
 
     /*----all-functions----------*/
     const login = () => {
+        console.log('--------------------------');
         console.log('starting fetch mathod --->');
-        fetch(
-            'http://192.168.0.111:8000/api/login',
-            {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email,
-                    password: password
+            fetch(
+                'http://192.168.0.111:8000/api/login',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
                 })
-            })
-            
-            .then((response)=>response.json())
-            .then((res) => {
-                console.log(res.state);
-                if(res.state=== 1){
-                    AsyncStorage.setItem('email', email);
-                    navigation.navigate('LanguageSetting');
-                }else{
-                     alert(res.error);
-                }
+                
+                .then((response)=>response.json())
+                .then((res) => {
+                    console.log(res.state);
+                    if(res.state=== 1){
+                        AsyncStorage.setItem('email', email);
+                        navigation.navigate('LanguageSetting');
+                    }else{
+                        alert(res.error);
+                    }
 
-            })
-            .done();
-            console.log('fetch method is done');
+                })
+                .catch((error)=>{
+                    alert(error);
+                })
+                .done();
+                console.log('fetch method is done');
+                console.log('--------------------------');
     }
 
     const checkLogin = async () => {
