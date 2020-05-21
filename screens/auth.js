@@ -32,7 +32,7 @@ export default function Auth({navigation }) {
                     console.log(res.state);
                     if(res.state=== 1){
                         AsyncStorage.setItem('email', email);
-                        navigation.navigate('LanguageSetting');
+                        navigation.navigate('DailyQuotes');
                     }else{
                         alert(res.error);
                     }
@@ -47,10 +47,11 @@ export default function Auth({navigation }) {
     }
 
     const checkLogin = async () => {
+        console.log('email is declared')
         try{
             var value = await AsyncStorage.getItem('email');
             if(value!== null){
-                navigation.navigate('LanguageSetting');
+                navigation.navigate('DailyQuotes');
             }
 
         }catch(error){

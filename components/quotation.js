@@ -15,21 +15,23 @@ export default function Quotation({quote}) {
   const getStorageData = async () =>{
     try {
       let quoteData = await AsyncStorage.getItem('quoteData');
-      return quoteData;
-
+      if(quoteData!==null){
+          return quoteData;
+      }else{
+          console.log('quote data are empty')
+      }
   }catch(error){
       alert(error);
   }
   }
 
   const declarData = () => {
-    let quoteData = getStorageData();
-    if(quoteData!==null){
-      setData(
-        quoteData
-      );
+        getStorageData()
+        .then((data)=>{
+            setData(JSON.parse(data));
+        });
     }
-  }
+  
 
   /*----------hooks------------*/
     useEffect(()=>{

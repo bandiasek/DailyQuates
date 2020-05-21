@@ -38,22 +38,23 @@ export default function DailyQuotes({ navigation }) {
 
   const getStorageData = async () =>{
     try {
-      let dailyQuotesData = await AsyncStorage.getItem('dailyQuotesData');
-      return dailyQuotesData;
-
+      let quoteData = await AsyncStorage.getItem('dailyQuotes');
+      if(quoteData!==null){
+          return quoteData;
+      }else{
+          console.log('quote data are empty')
+      }
   }catch(error){
       alert(error);
   }
   }
 
   const declarData = () => {
-    let dailyQuotesData = getStorageData();
-    if(dailyQuotesData!==null){
-      setData(
-        dailyQuotesData
-      );
-    }
-  }
+    getStorageData()
+    .then((data)=>{
+        setData(JSON.parse(data));
+    });
+}
 
   /*----------hooks------------*/
     useEffect(()=>{

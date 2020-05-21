@@ -8,19 +8,34 @@ export default function LanguageSetting({navigation }) {
     let englishData = require('../public/english.json');
 
     /*----all-functions----------*/
+    const saveStorageMulti = async(value) => {
+        console.log('saving> '+value)
+        try{
+            await AsyncStorage.multiSet(value, (error)=>{console.log(error)})
+        }catch(error){
+            console.log('error has occured: '+error)
+        }
+    }
+    
+    
     const setUserChoice = (userChoice) =>{
-        AsyncStorage.setItem('userChoice', userChoice);
         
         if(userChoice=='slovak'){
-           // AsyncStorage.setItem('authData', JSON.stringify(slovakData.authData));
-            AsyncStorage.setItem('quoteData', JSON.stringify(slovakData.quoteData));
-            AsyncStorage.setItem('dailyQuotesData', JSON.stringify(slovakData.dailyQuotesData));
+            saveStorageMulti([
+               // ['authData', JSON.stringify(slovakData.authData)],
+               // ['dailyQuotesData', JSON.stringify(slovakData.dailyQuotesData)],
+               // ['quoteData', JSON.stringify(slovakData.quoteData)],
+                ['userChoice', userChoice]
+            ]);
         } else if(userChoice=='english'){
-            // AsyncStorage.setItem('authData', JSON.stringify(englishData.authData));
-             AsyncStorage.setItem('quoteData', JSON.stringify(englishData.quoteData));
-             AsyncStorage.setItem('dailyQuotesData', JSON.stringify(englishData.dailyQuotesData));
+            saveStorageMulti([
+               // ['authData', JSON.stringify(slovakData.authData)],
+              //  ['dailyQuotesData', JSON.stringify(englishData.dailyQuotesData)],
+               // ['quoteData', JSON.stringify(englishData.quoteData)],
+                ['userChoice', userChoice]
+            ]);
          }else {
-             console.log('eroor has occured, loading data failed');
+             console.log('eroor has occured, setting data failed');
          }
 
     }
@@ -28,9 +43,10 @@ export default function LanguageSetting({navigation }) {
 
     const checkSettings = async () => { 
         try {
-            let asyncUserChoice = await AsyncStorage.getItem('userChoice');
-            if(asyncUserChoice!==null){
-                navigation.navigate('DailyQuotes');
+            let asyncUserChoice = await AsyncStorage.multiGet(['userChoice']);
+            console.log(asyncUserChoice[0][1]);
+            if(asyncUserChoice[0][1]!==null){
+                navigation.navigate('Auth');
             }
     
         }catch(error){
