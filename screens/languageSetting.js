@@ -3,34 +3,34 @@ import { Text, View, AsyncStorage, TouchableOpacity } from 'react-native';
 import { firstStartStyle } from '../style/languageSettingStyle';
 
 export default function LanguageSetting({navigation }) {
+   /*----basic-data-storages----*/
+    let slovakData = require('../public/slovak.json');
+    let englishData = require('../public/english.json');
 
     /*----all-functions----------*/
     const setUserChoice = (userChoice) =>{
         AsyncStorage.setItem('userChoice', userChoice);
-
-        if(userChoice=='english'){
-            AsyncStorage.setItem('author', 'Your developers.');
-            AsyncStorage.setItem('text', 'Use the button to get a quote...');
-            
-            navigation.navigate('DailyQuotes', {userChoice: userChoice, author: 'Your developers', text: 'Use the button to get a quote...'});
         
-        }else if(userChoice=='slovak'){
-            AsyncStorage.setItem('author', 'Vaši vývojári.');
-            AsyncStorage.setItem('text', 'Pre získanie citátu použi tlačidlo...');
-            
-            navigation.navigate('DailyQuotes', {userChoice: userChoice, author: 'Vaši vývojári.', text: 'Pre získanie citátu použi tlačidlo...'});
+        if(userChoice=='slovak'){
+           // AsyncStorage.setItem('authData', JSON.stringify(slovakData.authData));
+            AsyncStorage.setItem('quoteData', JSON.stringify(slovakData.quoteData));
+            AsyncStorage.setItem('dailyQuotesData', JSON.stringify(slovakData.dailyQuotesData));
+        } else if(userChoice=='english'){
+            // AsyncStorage.setItem('authData', JSON.stringify(englishData.authData));
+             AsyncStorage.setItem('quoteData', JSON.stringify(englishData.quoteData));
+             AsyncStorage.setItem('dailyQuotesData', JSON.stringify(englishData.dailyQuotesData));
+         }else {
+             console.log('eroor has occured, loading data failed');
+         }
 
-        }else{console.log('Failed to set default quote');}
-      }
+    }
       
 
-    const checkSettings = async () => {   //treba este upravit a skomprimovat
+    const checkSettings = async () => { 
         try {
             let asyncUserChoice = await AsyncStorage.getItem('userChoice');
-            let asyncAuthor = await AsyncStorage.getItem('author');
-            let asyncText = await AsyncStorage.getItem('text');
             if(asyncUserChoice!==null){
-                navigation.navigate('DailyQuotes', {userChoice: asyncUserChoice, author: asyncAuthor, text: asyncText});
+                navigation.navigate('DailyQuotes');
             }
     
         }catch(error){

@@ -1,16 +1,20 @@
 import React,{ useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Image} from 'react-native';
+import { Text, View, TouchableOpacity, Image, AsyncStorage,} from 'react-native';
 import Quotation from '../components/quotation';
 import { homeStyle } from '../style/homeStyle';
 
 export default function DailyQuotes({ navigation }) {
 
     /*----basic-data-storages----*/
-    const defaultLanguage = require("../public/default.json");
-    const [languageOfApp, setLanguageOfApp] = useState(defaultLanguage);
+    const [data, setData] = useState(
+      {
+            "author": "...",
+            "text": "...",
+            "button": "..."
+      });
     const [showingQuote, setShowingQuote] = useState({
-      autor:navigation.getParam('author'), 
-      text:navigation.getParam('text')
+      autor:data.author, 
+      text:data.text
     });
 
   /*----all-functions----------*/
@@ -20,7 +24,7 @@ export default function DailyQuotes({ navigation }) {
   
   const getQuoteHandller = () => {
     try{ 
-      setShowingQuote(languageOfApp.quotes[getRandomInt(languageOfApp.quotes.length)]);
+      setShowingQuote(data.quotes[getRandomInt(data.quotes.length)]);
 
     }catch(error){
 
@@ -32,26 +36,31 @@ export default function DailyQuotes({ navigation }) {
     navigation.navigate('Settings');
   }
 
-  const languageCheck = (userChoice) => {
-      console.log('checking language in homeScreen/dailyQuotes>> '+userChoice);
-      
-      if(userChoice=="english"){
-         
-        var english = require("../public/english.json");
-        setLanguageOfApp(english);
-      
-      }else if(userChoice=="slovak"){
-        
-        var slovak = require("../public/slovak.json");
-        setLanguageOfApp(slovak);
-      
-      }else {console.log("Failed to load language ")} 
+  const getStorageData = async () =>{
+    try {
+      let dailyQuotesData = await AsyncStorage.getItem('dailyQuotesData');
+      return dailyQuotesData;
+
+  }catch(error){
+      alert(error);
+  }
+  }
+
+  const declarData = () => {
+    let dailyQuotesData = getStorageData();
+    if(dailyQuotesData!==null){
+      setData(
+        dailyQuotesData
+      );
+    }
   }
 
   /*----------hooks------------*/
     useEffect(()=>{
-      languageCheck(navigation.getParam('userChoice'));
+      declarData();  
+      console.log('main useeffect');
     });
+
   /*------render-section------*/
   return (
     <View style={homeStyle.container}>
@@ -62,7 +71,6 @@ export default function DailyQuotes({ navigation }) {
         <View style={homeStyle.content}>
             <Quotation 
                 quote={showingQuote} 
-                language={languageOfApp} 
                 style={homeStyle.quoteComponent}
               />
             
@@ -71,7 +79,7 @@ export default function DailyQuotes({ navigation }) {
                 onPress={()=>getQuoteHandller()}
                 >
                  <Text style={homeStyle.quoteButton}>
-                      {languageOfApp.home.button}
+                      {data.button}
                    </Text>
               </TouchableOpacity>
               <TouchableOpacity 

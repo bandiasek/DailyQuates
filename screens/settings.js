@@ -19,6 +19,9 @@ export default function Settings({navigation }) {
   const reset = async () => {
       try {
           await AsyncStorage.removeItem('userChoice');
+          await AsyncStorage.removeItem('dailyQuotesData');
+          await AsyncStorage.removeItem('quoteData');
+        //  await AsyncStorage.removeItem('authData');
           alert('Reštartujte aplikáciu pre dokončenie a aplikovanie zmien');
       }
       catch(exception) {
