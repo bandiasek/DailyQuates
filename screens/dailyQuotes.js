@@ -28,15 +28,6 @@ export default function DailyQuotes({ navigation }) {
     navigation.navigate('Settings');
   }
 
-  const getStorageData = async () =>{
-      try {
-        let asyncUserChoice = await AsyncStorage.getItem('userChoice');
-            return asyncUserChoice;
-    }catch(error){
-        alert(error);
-    }
-  }
-
   const declareData = async() => {
     try{
       await AsyncStorage.getItem('userChoice')

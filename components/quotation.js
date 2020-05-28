@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { Text, View, ImageBackground, AsyncStorage} from 'react-native';
+import React from 'react';
+import { Text, View, ImageBackground} from 'react-native';
 import { quotationStyles } from '../style/quotationStyle.js';
 
 export default function Quotation({renderData, quoteData}) {
