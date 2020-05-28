@@ -19,7 +19,6 @@ export default function Settings({navigation }) {
   const reset = async () => {
       try {
           await AsyncStorage.removeItem('userChoice');
-          await AsyncStorage.clear();
           alert('Reštartujte aplikáciu pre dokončenie a aplikovanie zmien');
       }
       catch(exception) {

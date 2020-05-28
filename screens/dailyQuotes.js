@@ -39,7 +39,7 @@ export default function DailyQuotes({ navigation }) {
 
   const declareData = async() => {
     try{
-      let userChoice = await AsyncStorage.getItem('userChoice')
+      await AsyncStorage.getItem('userChoice')
         .then((userChoice)=>{
           if(userChoice!==null){
 
