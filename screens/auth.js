@@ -61,7 +61,7 @@ export default function Auth({navigation }) {
 
     /*----all-hooks--------------*/
     useEffect(()=>{
-        console.log('logging page has been loaded');
+        console.log('UseEffect has been loaded >> auth');
         checkLogin();
     });
     

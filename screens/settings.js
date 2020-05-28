@@ -18,11 +18,8 @@ export default function Settings({navigation }) {
 
   const reset = async () => {
       try {
-          await AsyncStorage.multiRemove(['userChoice']);
-          //await AsyncStorage.removeItem('userChoice');
-          //await AsyncStorage.removeItem('dailyQuotesData');
-          //await AsyncStorage.removeItem('quoteData');
-        //  await AsyncStorage.removeItem('authData');
+          await AsyncStorage.removeItem('userChoice');
+          await AsyncStorage.clear();
           alert('Reštartujte aplikáciu pre dokončenie a aplikovanie zmien');
       }
       catch(exception) {

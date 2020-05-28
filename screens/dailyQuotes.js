@@ -6,16 +6,8 @@ import { homeStyle } from '../style/homeStyle';
 export default function DailyQuotes({ navigation }) {
 
     /*----basic-data-storages----*/
-    const [data, setData] = useState(
-      {
-            "author": "...",
-            "text": "...",
-            "button": "..."
-      });
-    const [showingQuote, setShowingQuote] = useState({
-      autor:data.author, 
-      text:data.text
-    });
+    const [data, setData] = useState(null);
+    const [showingQuote, setShowingQuote] = useState(null);
 
   /*----all-functions----------*/
   const getRandomInt = (max) => {
@@ -37,32 +29,49 @@ export default function DailyQuotes({ navigation }) {
   }
 
   const getStorageData = async () =>{
-    try {
-      let quoteData = await AsyncStorage.getItem('dailyQuotes');
-      if(quoteData!==null){
-          return quoteData;
-      }else{
-          console.log('quote data are empty')
-      }
-  }catch(error){
+      try {
+        let asyncUserChoice = await AsyncStorage.getItem('userChoice');
+            return asyncUserChoice;
+    }catch(error){
+        alert(error);
+    }
+  }
+
+  const declareData = async() => {
+    try{
+      let userChoice = await AsyncStorage.getItem('userChoice')
+        .then((userChoice)=>{
+          if(userChoice!==null){
+
+            if(userChoice==='slovak'){
+              setShowingQuote((require('../public/dailyQuotesSlovak.json')).showingQuoteData);
+              setData(require('../public/dailyQuotesSlovak.json'));
+      
+            }else{
+              setShowingQuote((require('../public/dailyQuotesEnglish.json')).showingQuoteData);
+              setData(require('../public/dailyQuotesEnglish.json'));
+
+            }
+          }else{
+            console.log('userChoice is null');
+          }
+        }).done();
+    
+    }catch(error){
       alert(error);
-  }
+    }   
   }
 
-  const declarData = () => {
-    getStorageData()
-    .then((data)=>{
-        setData(JSON.parse(data));
-    });
-}
-
+  
   /*----------hooks------------*/
     useEffect(()=>{
-      declarData();  
-      console.log('main useeffect');
-    });
+      console.log('UseEffect has been loaded >> dailyQuotes');
+      declareData();
+    
+    },[]);
 
   /*------render-section------*/
+if(data!==null){
   return (
     <View style={homeStyle.container}>
       <View style={homeStyle.parentOfContent}>
@@ -70,10 +79,12 @@ export default function DailyQuotes({ navigation }) {
             Daily Quotes
           </Text>
         <View style={homeStyle.content}>
-            <Quotation 
-                quote={showingQuote} 
-                style={homeStyle.quoteComponent}
-              />
+           
+        <Quotation
+            quoteData={showingQuote}
+            renderData={data.renderQuoteData}
+            style={homeStyle.quoteComponent}
+          />
             
             <View style={homeStyle.buttonSection} >
               <TouchableOpacity 
@@ -94,4 +105,25 @@ export default function DailyQuotes({ navigation }) {
       </View>
     </View>
   );
+  }
+
+  else{
+    return(
+      <View style={
+        {
+          flex:1, justifyContent:"center", alignContent:"center",alignItems:"center"
+        }
+      }>
+        <Text style={{fontSize:30}}>
+            Data null
+          </Text>
+      </View>
+    );
+  }
+
+  
 }
+
+/*
+
+*/

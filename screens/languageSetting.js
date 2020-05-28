@@ -4,14 +4,12 @@ import { firstStartStyle } from '../style/languageSettingStyle';
 
 export default function LanguageSetting({navigation }) {
    /*----basic-data-storages----*/
-    let slovakData = require('../public/slovak.json');
-    let englishData = require('../public/english.json');
 
     /*----all-functions----------*/
-    const saveStorageMulti = async(value) => {
+    const saveStorage = async(value) => {
         console.log('saving> '+value)
         try{
-            await AsyncStorage.multiSet(value, (error)=>{console.log(error)})
+            await AsyncStorage.setItem('userChoice', value)
         }catch(error){
             console.log('error has occured: '+error)
         }
@@ -19,21 +17,15 @@ export default function LanguageSetting({navigation }) {
     
     
     const setUserChoice = (userChoice) =>{
-        
         if(userChoice=='slovak'){
-            saveStorageMulti([
-               // ['authData', JSON.stringify(slovakData.authData)],
-               // ['dailyQuotesData', JSON.stringify(slovakData.dailyQuotesData)],
-               // ['quoteData', JSON.stringify(slovakData.quoteData)],
-                ['userChoice', userChoice]
-            ]);
+           saveStorage('slovak');
+           navigation.navigate('Auth');
+
+
         } else if(userChoice=='english'){
-            saveStorageMulti([
-               // ['authData', JSON.stringify(slovakData.authData)],
-              //  ['dailyQuotesData', JSON.stringify(englishData.dailyQuotesData)],
-               // ['quoteData', JSON.stringify(englishData.quoteData)],
-                ['userChoice', userChoice]
-            ]);
+            saveStorage('englsih');
+            navigation.navigate('Auth');
+
          }else {
              console.log('eroor has occured, setting data failed');
          }
@@ -43,9 +35,9 @@ export default function LanguageSetting({navigation }) {
 
     const checkSettings = async () => { 
         try {
-            let asyncUserChoice = await AsyncStorage.multiGet(['userChoice']);
-            console.log(asyncUserChoice[0][1]);
-            if(asyncUserChoice[0][1]!==null){
+            let asyncUserChoice = await AsyncStorage.getItem('userChoice');
+            console.log('userChoice has been loaded: '+asyncUserChoice);
+            if(asyncUserChoice!==null){
                 navigation.navigate('Auth');
             }
     
@@ -56,7 +48,7 @@ export default function LanguageSetting({navigation }) {
 
     /*----all-hooks--------------*/
     useEffect(()=>{
-        console.log('Language choosing page has been loaded');
+        console.log('UseEffect has been loaded >> languageSettings');
         checkSettings();
     });
     
