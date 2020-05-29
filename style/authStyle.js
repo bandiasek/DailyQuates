@@ -1,10 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const authStyle = StyleSheet.create({
-    
-    mainContainer:{
-        
-    },
 
     wrapper: {
         flex:1,
@@ -12,29 +8,25 @@ export const authStyle = StyleSheet.create({
         alignContent:'center',
         alignItems:'center',
     },
-    heading: {
-        fontSize:45,
-        textAlign:'center',
-        paddingBottom:10
-    },
     
-    textInput: {
-        backgroundColor:'#DEDEDE',
-        fontSize:30,
-        textAlign:'center',
-        padding: 15,
-        marginBottom: 8,
-        borderRadius:10
+    container: {
+        flex: 1,
+        backgroundColor: '#E9EBEE'
     },
-    loginBtn: {
-        backgroundColor: '#0099ff',
-        padding:5,
-        borderRadius:10,
-        marginTop: 10
+
+    header: {
+        flex: 2,
+        backgroundColor:'blue',
+        justifyContent:'center',
+        alignItems:'center'
     },
-    loginBtnText: {
-        textAlign:'center',
-        fontSize:20
+    footer: {
+        flex: 5,
+       backgroundColor:'blue',
+       paddingVertical: 50,
+       paddingHorizontal: 30
     }
+
+    
 
 });

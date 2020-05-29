@@ -7,7 +7,7 @@ export default function Settings({navigation }) {
   /*Async storage to store user choice*/
   const logout = async () => {
     try {
-        await AsyncStorage.removeItem('email');
+        await AsyncStorage.removeItem('token');
         alert('Reštartujte aplikáciu pre dokončenie a aplikovanie zmien');
     }
     catch(exception) {
