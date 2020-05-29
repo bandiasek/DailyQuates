@@ -9,11 +9,31 @@ import Logo from '../components/logo';
 export default function Auth({navigation }) {
      /*----all-data---------------*/
     const [data, setData] = useState({
-        emailCorrect: true,
-        passwordCorrect: true,
+        email:'',
+        password:'',
+        emailCorrect: false,
+        secureTextEntry: true,
     });
 
     /*----all-functions----------*/
+    const textInputChange = (value) => {
+            setData({
+                ...data,
+                email: value
+                });
+            if(value.includes('@')&&value.includes('.')&&!value.includes(' ')){
+                setData({
+                    ...data,
+                    emailCorrect:true
+                });
+            }else{
+                setData({
+                    ...data,
+                    emailCorrect:false
+                });
+            }
+    }
+
    
     const login = () => {
                 console.log('--------------------------');
@@ -94,14 +114,16 @@ export default function Auth({navigation }) {
                     />
                     <TextInput
                         placeholder='Your Email'
+                        autoCapitalize='none'
                         style={authStyle.textInput}
+                        onChangeText={(value)=>{textInputChange(value)}}
                     />
-                    <Feather
-                        name='check-circle'
-                        color='green'
-                        size={20}
-                        style={authStyle.icon}
-                    />
+                        <Feather
+                            name={data.emailCorrect ? 'check-circle' : 'circle'}
+                            color={data.emailCorrect ? 'green' : 'grey'}
+                            size={20}
+                            style={authStyle.icon}
+                        />
                 </View>
                 
                 <View style={authStyle.inputSection}>
@@ -114,6 +136,8 @@ export default function Auth({navigation }) {
                     <TextInput
                         placeholder='Your Password'
                         style={authStyle.textInput}
+                        autoCapitalize='none'
+                        secureTextEntry={data.secureTextEntry}
                     />
                     <TouchableOpacity>
                         <Feather
