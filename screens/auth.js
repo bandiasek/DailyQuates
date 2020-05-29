@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
-import Icon from 'react-native-vector-icons';
 import Feather from 'react-native-vector-icons/Feather';
-import { Text, View, AsyncStorage, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native';
+import { Text, View, AsyncStorage, TouchableOpacity, TextInput } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 import { authStyle } from '../style/authStyle';
 import Logo from '../components/logo';
 
@@ -48,13 +48,9 @@ export default function Auth({navigation }) {
                         })
                         .done();
                         console.log('fetch method is done');
-                        console.log('--------------------------');
-                
+                        console.log('--------------------------');       
         }
         
-        
-        
-
     const checkLogin = async () => {
         try{
             var value = await AsyncStorage.getItem('token');
@@ -74,14 +70,21 @@ export default function Auth({navigation }) {
     },[]);
     
   return (
-    //<KeyboardAvoidingView behavior='padding' style={authStyle.wrapper}>
         <View style={authStyle.container}>
             
-            <View style={authStyle.header}>
-                <Logo style={authStyle.logo}/>
-            </View>
+            <Animatable.View 
+                style={authStyle.header}
+                    animation='bounceIn'
+                >
+                <Logo 
+                    style={authStyle.logo}
+                />
+            </Animatable.View>
             
-            <View style={authStyle.footer}>
+            <Animatable.View 
+                style={authStyle.footer}
+                    animation='fadeInUpBig'
+            >
                 <Text style={authStyle.heading}>LOGIN</Text>
                 <View style={authStyle.inputSection}>
                     <Feather
@@ -117,7 +120,7 @@ export default function Auth({navigation }) {
                             name='eye-off'
                             color='grey'
                             size={20}
-                            style={authStyle.icon}
+                            style={authStyle.icon,{paddingRight:12}}
                         />
                     </TouchableOpacity>
                 </View>
@@ -132,8 +135,7 @@ export default function Auth({navigation }) {
                     </TouchableOpacity>
                 </View>
 
-            </View>
+            </Animatable.View>
         </View>
-  //  </KeyboardAvoidingView>
   );
 }
