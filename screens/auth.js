@@ -1,4 +1,6 @@
 import React, { useEffect, useState} from 'react';
+import Icon from 'react-native-vector-icons';
+import Feather from 'react-native-vector-icons/Feather';
 import { Text, View, AsyncStorage, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native';
 import { authStyle } from '../style/authStyle';
 import Logo from '../components/logo';
@@ -74,11 +76,62 @@ export default function Auth({navigation }) {
   return (
     //<KeyboardAvoidingView behavior='padding' style={authStyle.wrapper}>
         <View style={authStyle.container}>
+            
             <View style={authStyle.header}>
-                <Logo />
+                <Logo style={authStyle.logo}/>
             </View>
+            
             <View style={authStyle.footer}>
-                <Text>Footer</Text>
+                <Text style={authStyle.heading}>LOGIN</Text>
+                <View style={authStyle.inputSection}>
+                    <Feather
+                        name='user'
+                        size={20}
+                        style={authStyle.icon}
+                    />
+                    <TextInput
+                        placeholder='Your Email'
+                        style={authStyle.textInput}
+                    />
+                    <Feather
+                        name='check-circle'
+                        color='green'
+                        size={20}
+                        style={authStyle.icon}
+                    />
+                </View>
+                
+                <View style={authStyle.inputSection}>
+                    <Feather
+                        name='lock'
+                        size={20}
+                        style={authStyle.icon}
+                        
+                    />
+                    <TextInput
+                        placeholder='Your Password'
+                        style={authStyle.textInput}
+                    />
+                    <TouchableOpacity>
+                        <Feather
+                            name='eye-off'
+                            color='grey'
+                            size={20}
+                            style={authStyle.icon}
+                        />
+                    </TouchableOpacity>
+                </View>
+               
+                <View style={authStyle.btnSection}>
+                    <TouchableOpacity style={authStyle.signInOpacity}>
+                        <Text style={authStyle.signInText}>Sign In</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={authStyle.signUpOpacity}>
+                        <Text style={authStyle.signUpText}>Don't have an account ?</Text>
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </View>
   //  </KeyboardAvoidingView>
