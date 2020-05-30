@@ -17,25 +17,34 @@ export default function Auth({navigation }) {
 
     /*----all-functions----------*/
     const textInputChange = (value) => {
-            setData({
-                ...data,
-                email: value
-                });
             if(value.includes('@')&&value.includes('.')&&!value.includes(' ')){
                 setData({
                     ...data,
-                    emailCorrect:true
+                    emailCorrect:true,
+                    email: value
                 });
             }else{
                 setData({
                     ...data,
-                    emailCorrect:false
+                    emailCorrect:false,
+                    email: value
                 });
-            }
+            } 
     }
 
-   
     const login = () => {
+        if(data.emailCorrect){
+            if(data.password!==''){
+                loginRemote();
+            }else{
+                alert('Password can not be empty');
+            }
+        }else{
+            alert('Email is incorrect');
+        }
+    }
+   
+    const loginRemote = () => {
                 console.log('--------------------------');
                 console.log('starting fetch mathod --->');
                     fetch(
@@ -47,19 +56,19 @@ export default function Auth({navigation }) {
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                email: email,
-                                password: password
+                                email: data.email,
+                                password: data.password
                             })
                         })
                         
                         .then((response)=>response.json())
                         .then((res) => {
-                            console.log(res.state);
+                            console.log(res.state == 1 ? 'succesfuly login' : 'login failed');
                             if(res.state){
                                 AsyncStorage.setItem('token', res.success.token);
                                 navigation.navigate('DailyQuotes');
                             }else{
-                                alert(res.error);
+                                alert('Login failed');
                             }
 
                         })
@@ -138,10 +147,20 @@ export default function Auth({navigation }) {
                         style={authStyle.textInput}
                         autoCapitalize='none'
                         secureTextEntry={data.secureTextEntry}
+                        onChangeText={(value)=>{
+                            setData({
+                                ...data,
+                                password:value
+                            });
+                        }}
                     />
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={()=>{
+                            setData({...data,secureTextEntry:!data.secureTextEntry});
+                        }}
+                    >
                         <Feather
-                            name='eye-off'
+                            name={data.secureTextEntry ? 'eye-off':'eye'}
                             color='grey'
                             size={20}
                             style={authStyle.icon,{paddingRight:12}}
@@ -150,7 +169,10 @@ export default function Auth({navigation }) {
                 </View>
                
                 <View style={authStyle.btnSection}>
-                    <TouchableOpacity style={authStyle.signInOpacity}>
+                    <TouchableOpacity 
+                        style={authStyle.signInOpacity}
+                        onPress={()=>{login()}}
+                    >
                         <Text style={authStyle.signInText}>Sign In</Text>
                     </TouchableOpacity>
 
