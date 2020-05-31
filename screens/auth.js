@@ -16,7 +16,7 @@ export default function Auth({navigation }) {
     });
 
     /*----all-functions----------*/
-    const textInputChange = (value) => {
+    const emailInputChange = (value) => {
             if(value.includes('@')&&value.includes('.')&&!value.includes(' ')){
                 setData({
                     ...data,
@@ -95,7 +95,7 @@ export default function Auth({navigation }) {
 
     /*----all-hooks--------------*/
     useEffect(()=>{
-  
+        checkLogin();
     },[]);
     
   return (
@@ -117,7 +117,7 @@ export default function Auth({navigation }) {
                 <Text style={authStyle.heading}>LOGIN</Text>
                 <View style={authStyle.inputSection}>
                     <Feather
-                        name='user'
+                        name='mail'
                         size={20}
                         style={authStyle.icon}
                     />
@@ -125,7 +125,7 @@ export default function Auth({navigation }) {
                         placeholder='Your Email'
                         autoCapitalize='none'
                         style={authStyle.textInput}
-                        onChangeText={(value)=>{textInputChange(value)}}
+                        onChangeText={(value)=>{emailInputChange(value)}}
                     />
                         <Feather
                             name={data.emailCorrect ? 'check-circle' : 'circle'}
@@ -176,7 +176,10 @@ export default function Auth({navigation }) {
                         <Text style={authStyle.signInText}>Sign In</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={authStyle.signUpOpacity}>
+                    <TouchableOpacity 
+                        style={authStyle.signUpOpacity}
+                        onPress={()=>{navigation.navigate('Register')}}    
+                    >
                         <Text style={authStyle.signUpText}>Don't have an account ?</Text>
                     </TouchableOpacity>
                 </View>
