@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
-import { Text, View, AsyncStorage, TouchableOpacity, TextInput } from 'react-native';
+import { Text, View, AsyncStorage, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { authStyle } from '../style/authStyle';
 import Logo from '../components/logo';
@@ -99,6 +99,7 @@ export default function Auth({navigation }) {
     },[]);
     
   return (
+    <TouchableWithoutFeedback onPress={()=>{Keyboard.dismiss()}}>
         <View style={authStyle.container}>
             
             <Animatable.View 
@@ -186,5 +187,6 @@ export default function Auth({navigation }) {
 
             </Animatable.View>
         </View>
+    </TouchableWithoutFeedback>    
   );
 }

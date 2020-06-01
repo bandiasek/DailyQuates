@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
-import { Text, View, AsyncStorage, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
+import { Text, View, AsyncStorage, TouchableOpacity, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { registerStyle } from '../style/registerStyle';
 import Logo from '../components/logo';
@@ -73,7 +73,7 @@ export default function Register({navigation }) {
             if(data.emailCorrect){
                 if(data.password!==''){
                     if(data.confirmPasswordCorrect){
-                        alert('BEGIN REGISTRATION');
+                        registerRemote();
                     }else{
                         alert('Confirm password is incorrect');
                     }
@@ -92,7 +92,7 @@ export default function Register({navigation }) {
                 console.log('--------------------------');
                 console.log('starting fetch mathod --->');
                     fetch(
-                        'http://192.168.0.111:8000/api/login',
+                        'http://192.168.0.111:8000/api/register',
                         {
                             method: 'POST',
                             headers: {
@@ -100,19 +100,21 @@ export default function Register({navigation }) {
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
+                                name: data.name,
                                 email: data.email,
-                                password: data.password
+                                password: data.password,
+                                c_password: data.confirmPassword,
                             })
                         })
                         
                         .then((response)=>response.json())
                         .then((res) => {
-                            console.log(res.state == 1 ? 'succesfuly login' : 'login failed');
+                            console.log(res.state == 1 ? 'succesfuly registered' : 'registration failed');
                             if(res.state){
                                 AsyncStorage.setItem('token', res.success.token);
                                 navigation.navigate('DailyQuotes');
                             }else{
-                                alert('Login failed');
+                                alert('Registration failed');
                             }
 
                         })
@@ -131,6 +133,7 @@ export default function Register({navigation }) {
     },[]);
     
   return (
+    <TouchableWithoutFeedback onPress={()=>{Keyboard.dismiss()}}>
         <KeyboardAvoidingView
             behavior='padding'
             style={registerStyle.container}   
@@ -253,7 +256,10 @@ export default function Register({navigation }) {
                         <Text style={registerStyle.signInText}>Sign Up</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={registerStyle.signUpOpacity}>
+                    <TouchableOpacity 
+                        style={registerStyle.signUpOpacity}
+                        onPress={()=>{navigation.goBack()}}    
+                    >
                         <Text style={registerStyle.signUpText}>Already registered ?</Text>
                     </TouchableOpacity>
                 </View>
@@ -261,5 +267,6 @@ export default function Register({navigation }) {
             </Animatable.View>
             
         </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }

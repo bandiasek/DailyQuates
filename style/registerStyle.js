@@ -74,7 +74,7 @@ export const registerStyle = StyleSheet.create({
         color: '#ECECEC'
     },
     signUpOpacity:{
-        marginTop:200,
+        marginTop:80,
         position:'relative',
         borderBottomColor: '#272523',
         borderBottomWidth: 2
