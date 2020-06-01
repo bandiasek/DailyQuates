@@ -69,14 +69,22 @@ export default function Register({navigation }) {
     }
 
     const register = () => {
-        if(data.emailCorrect){
-            if(data.password!==''){
-                loginRemote();
+        if(data.name){
+            if(data.emailCorrect){
+                if(data.password!==''){
+                    if(data.confirmPasswordCorrect){
+                        alert('BEGIN REGISTRATION');
+                    }else{
+                        alert('Confirm password is incorrect');
+                    }
+                }else{
+                    alert('Password can not be empty');
+                }
             }else{
-                alert('Password can not be empty');
+                alert('Email is incorrect');
             }
         }else{
-            alert('Email is incorrect');
+            alert('Name can not be empty');
         }
     }
    
@@ -116,18 +124,6 @@ export default function Register({navigation }) {
                         console.log('--------------------------');       
         }
         
-    const checkLogin = async () => {
-        try{
-            var value = await AsyncStorage.getItem('token');
-            if(value!== null){
-                console.log('User is already logged in');
-                navigation.navigate('DailyQuotes');
-            }
-
-        }catch(error){
-            alert(error);
-        }
-    }
 
     /*----all-hooks--------------*/
     useEffect(()=>{
@@ -252,7 +248,7 @@ export default function Register({navigation }) {
                 <View style={registerStyle.btnSection}>
                     <TouchableOpacity 
                         style={registerStyle.signInOpacity}
-                        onPress={()=>{login()}}
+                        onPress={()=>{register()}}
                     >
                         <Text style={registerStyle.signInText}>Sign Up</Text>
                     </TouchableOpacity>
