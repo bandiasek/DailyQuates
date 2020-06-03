@@ -1,7 +1,8 @@
 import React,{ useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, AsyncStorage,} from 'react-native';
 import Quotation from '../components/quotation';
-import { homeStyle } from '../style/homeStyle';
+import DataNull from '../components/dataNull';
+import { dailyQuotesStyle } from '../style/dailyQuotesStyle';
 
 export default function DailyQuotes({ navigation }) {
 
@@ -64,57 +65,27 @@ export default function DailyQuotes({ navigation }) {
   /*------render-section------*/
 if(data!==null){
   return (
-    <View style={homeStyle.container}>
-      <View style={homeStyle.parentOfContent}>
-        <Text style={homeStyle.heading}>
-            Daily Quotes
-          </Text>
-        <View style={homeStyle.content}>
-           
-        <Quotation
-            quoteData={showingQuote}
-            renderData={data.renderQuoteData}
-            style={homeStyle.quoteComponent}
-          />
-            
-            <View style={homeStyle.buttonSection} >
-              <TouchableOpacity 
-                onPress={()=>getQuoteHandller()}
-                >
-                 <Text style={homeStyle.quoteButton}>
-                      {data.button}
-                   </Text>
-              </TouchableOpacity>
-              <TouchableOpacity 
-                  style={homeStyle.settingsBtn} 
-                  onPress={()=>{settingsHandller()}}
-                >
-                <Image source={require("../assets/settingsIcon50px.png")} />
-              </TouchableOpacity>
-            </View>
+    <View style={dailyQuotesStyle.container} >
+        
+        <View style={dailyQuotesStyle.header}>
+
         </View>
-      </View>
+
+        <View style={dailyQuotesStyle.body}>
+
+        </View>
+
+        <View style={dailyQuotesStyle.footer}>
+
+        </View>
+
     </View>
-  );
+    );
   }
 
   else{
     return(
-      <View style={
-        {
-          flex:1, justifyContent:"center", alignContent:"center",alignItems:"center"
-        }
-      }>
-        <Text style={{fontSize:30}}>
-            Data null
-          </Text>
-      </View>
-    );
+        <DataNull />
+      );
   }
-
-  
 }
-
-/*
-
-*/
