@@ -9,35 +9,45 @@ export default function Quotation({ quoteData}) {
     return(
             <View style={quotationStyles.container} >
 
-                <View style={quotationStyles.header}>
+                <Animatable.View 
+                    style={quotationStyles.header}
+                    animation='bounceInLeft'
+                >
                     <View style={quotationStyles.imgView}>
                         <Image 
                             source={require('../assets/heartYellow.png')}
                             style={quotationStyles.image}
                         />
                     </View>
-                </View>
+                </Animatable.View>
 
-                <View style={quotationStyles.body}>
-                    <Text>
-                        {/*quoteData.text*/}
-                        TEXT CITATU
+                <Animatable.View 
+                    style={quotationStyles.body}
+                    animation='bounceIn'
+                >
+                    <Text style={quotationStyles.text}>
+                        {quoteData.text}
                     </Text>
-                </View>
+                </Animatable.View>
 
-                <View style={quotationStyles.footer}>
+                <Animatable.View 
+                    style={quotationStyles.footer}
+                    animation='bounceInRight'
+                >
                     <View style={quotationStyles.imgView}>
                         <Image 
                             source={require('../assets/heartYellow.png')}
                             style={quotationStyles.image}
                         />
                     </View>    
-                </View>
+                </Animatable.View>
 
-                <Text style={quotationStyles.autorText}>
-                    {/*quoteData.author*/}
-                    Author
-                </Text>
+                <Animatable.Text 
+                    style={quotationStyles.autorText}
+                    animation='bounceInRight'
+                >
+                    {quoteData.author}
+                </Animatable.Text>
 
             </View>
         );

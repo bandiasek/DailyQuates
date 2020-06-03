@@ -23,6 +23,12 @@ export const quotationStyles = StyleSheet.create({
         alignItems: 'center'
       },
 
+      text: {
+        textAlign: 'center',
+        fontSize: 25,
+        color:'#272523'
+      },
+
     footer:{
         flex: 1,
         alignItems: 'center',
@@ -44,7 +50,8 @@ export const quotationStyles = StyleSheet.create({
 
     autorText: {
         textAlign: 'right',
-        fontSize: 20,
-        padding: 5
+        fontSize: 16,
+        padding: 5,
+        color: '#272523'
     }
 });
