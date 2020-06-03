@@ -78,7 +78,7 @@ if(data!==null){
         </Animatable.View>
 
         <View style={dailyQuotesStyle.body}>
-
+            <Quotation quoteData={showingQuote} />
         </View>
 
         <View style={dailyQuotesStyle.footer}>

@@ -1,41 +1,44 @@
 import React from 'react';
-import { Text, View, ImageBackground} from 'react-native';
+import { Text, View, Image} from 'react-native';
 import { quotationStyles } from '../style/quotationStyle.js';
+import * as Font from 'expo-font'
+import * as Animatable from 'react-native-animatable';
 
-export default function Quotation({renderData, quoteData}) {
+export default function Quotation({ quoteData}) {
 
     return(
-            <View style={quotationStyles.container}>
-                    <ImageBackground style={quotationStyles.background} source={require("../assets/backgroundQuote.png")}/>
-                <View style={quotationStyles.quote}>
-            
-                    <Text style={{paddingLeft:'70%',fontSize: 20,fontWeight: 'bold',paddingBottom:10, paddingTop:30}}>
-                        [{renderData.namingQuote}]
-                    </Text>
-                    
-                    <Text style={quotationStyles.quoteText}>
-                        {quoteData.text}
-                    </Text>
-                </View>
-    
-                <View style={quotationStyles.lowerBar}>
-                    <View style={{alignItems:'center',paddingRight:25}}>
-                        <Text style={quotationStyles.naming}>[datum]</Text>
-                        <Text>.....</Text>
-                    </View>
-                    <View style={{alignItems:'center',paddingLeft:25}}>
-                        
-                        <Text style={quotationStyles.naming}>
-                            [{renderData.namingAuthor}]
-                        </Text>
-                        
-                        <Text>
-                            {quoteData.autor}
-                        </Text>
-    
+            <View style={quotationStyles.container} >
+
+                <View style={quotationStyles.header}>
+                    <View style={quotationStyles.imgView}>
+                        <Image 
+                            source={require('../assets/heartYellow.png')}
+                            style={quotationStyles.image}
+                        />
                     </View>
                 </View>
-            
+
+                <View style={quotationStyles.body}>
+                    <Text>
+                        {/*quoteData.text*/}
+                        TEXT CITATU
+                    </Text>
+                </View>
+
+                <View style={quotationStyles.footer}>
+                    <View style={quotationStyles.imgView}>
+                        <Image 
+                            source={require('../assets/heartYellow.png')}
+                            style={quotationStyles.image}
+                        />
+                    </View>    
+                </View>
+
+                <Text style={quotationStyles.autorText}>
+                    {/*quoteData.author*/}
+                    Author
+                </Text>
+
             </View>
         );
 }

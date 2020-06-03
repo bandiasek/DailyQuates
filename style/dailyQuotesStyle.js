@@ -9,21 +9,19 @@ export const dailyQuotesStyle = StyleSheet.create({
       },
 
     header: {
-        flex: 2,
+        flex: 3,
         padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
       },
 
     body:{
-        flex: 4,
-        backgroundColor:'yellow',
+        flex: 6,
         padding: 10
       },
 
     footer:{
-        flex: 1,
-        backgroundColor:'red',
+        flex: 2,
         padding:10
       },  
     
