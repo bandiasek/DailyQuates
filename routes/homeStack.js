@@ -12,7 +12,7 @@ const screens = {
         navigationOptions: {
             title: 'Language Setting',
             headerShown: false,
-            gesturesEnabled: false,
+            gestureEnabled: false,
         }
     },
 
@@ -21,7 +21,7 @@ const screens = {
         navigationOptions: {
             title: 'Auth',
             headerShown: false,
-            gesturesEnabled: false,
+            gestureEnabled: false,
         }
     },
 
@@ -38,7 +38,7 @@ const screens = {
         navigationOptions: {
             title: 'Daily Quotes',
             headerShown: false,
-            gesturesEnabled: false, 
+            gestureEnabled: false, 
         }
     },
 
