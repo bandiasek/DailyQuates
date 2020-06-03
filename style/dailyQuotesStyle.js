@@ -4,18 +4,19 @@ export const dailyQuotesStyle = StyleSheet.create({
     
     container: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#ECECEC',
         alignContent: 'center',
       },
 
     header: {
-        flex: 1,
-        backgroundColor:'green',
-        padding: 10
+        flex: 2,
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
       },
 
     body:{
-        flex: 3,
+        flex: 4,
         backgroundColor:'yellow',
         padding: 10
       },

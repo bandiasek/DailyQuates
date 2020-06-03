@@ -1,8 +1,11 @@
 import React,{ useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, AsyncStorage,} from 'react-native';
+import { dailyQuotesStyle } from '../style/dailyQuotesStyle';
+import * as Animatable from 'react-native-animatable';
+
 import Quotation from '../components/quotation';
 import DataNull from '../components/dataNull';
-import { dailyQuotesStyle } from '../style/dailyQuotesStyle';
+import Logo from '../components/logo';
 
 export default function DailyQuotes({ navigation }) {
 
@@ -67,9 +70,12 @@ if(data!==null){
   return (
     <View style={dailyQuotesStyle.container} >
         
-        <View style={dailyQuotesStyle.header}>
-
-        </View>
+        <Animatable.View 
+            style={dailyQuotesStyle.header}
+            animation='bounceInDown'
+          >
+            <Logo />
+        </Animatable.View>
 
         <View style={dailyQuotesStyle.body}>
 
