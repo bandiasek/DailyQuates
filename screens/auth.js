@@ -48,7 +48,7 @@ export default function Auth({navigation }) {
                 console.log('--------------------------');
                 console.log('starting fetch mathod --->');
                     fetch(
-                        'http://192.168.0.111:8000/api/login',
+                        'http://dailyquotes.project-samson.com/api/login',
                         {
                             method: 'POST',
                             headers: {

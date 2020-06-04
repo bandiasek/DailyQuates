@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Image, AsyncStorage,} from 'react-native';
+import { Text, View, TouchableOpacity, Image, AsyncStorage, Button,} from 'react-native';
 import { dailyQuotesStyle } from '../style/dailyQuotesStyle';
 import * as Animatable from 'react-native-animatable';
 
@@ -82,7 +82,10 @@ if(data!==null){
         </View>
 
         <View style={dailyQuotesStyle.footer}>
-
+            <Button 
+              title='pres to settings'
+              onPress={()=>navigation.navigate('Settings')}
+            />
         </View>
 
     </View>

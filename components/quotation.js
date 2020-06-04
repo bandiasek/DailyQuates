@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, Image} from 'react-native';
 import { quotationStyles } from '../style/quotationStyle.js';
+import Entypo from 'react-native-vector-icons/Entypo';
 import * as Font from 'expo-font'
 import * as Animatable from 'react-native-animatable';
 
@@ -18,6 +19,11 @@ export default function Quotation({ quoteData}) {
                             source={require('../assets/heartYellow.png')}
                             style={quotationStyles.image}
                         />
+                        <Entypo 
+                            name='quote'
+                            size={40}
+                            style={quotationStyles.quoteIcon}
+                        />   
                     </View>
                 </Animatable.View>
 
@@ -38,6 +44,12 @@ export default function Quotation({ quoteData}) {
                         <Image 
                             source={require('../assets/heartYellow.png')}
                             style={quotationStyles.image}
+                        />
+                        <Entypo 
+                            name='quote'
+                            size={40}
+                            style={quotationStyles.quoteIcon}
+                            
                         />
                     </View>    
                 </Animatable.View>

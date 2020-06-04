@@ -53,5 +53,12 @@ export const quotationStyles = StyleSheet.create({
         fontSize: 16,
         padding: 5,
         color: '#272523'
+    },
+
+    quoteIcon: {
+        position:'absolute',
+        zIndex: 20,
+        top: 25,
+        left: 42
     }
 });
