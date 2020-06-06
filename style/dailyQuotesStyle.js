@@ -34,13 +34,14 @@ export const dailyQuotesStyle = StyleSheet.create({
         paddingHorizontal: 40,
         borderTopLeftRadius: 25,
         borderBottomLeftRadius: 25,
-        marginRight: -10
+        marginRight: -4
     },
 
     midBtn: {
         backgroundColor: 'white',
         borderRadius: 55,
-        padding: 5
+        padding: 5,
+        zIndex: 50
        
     },
 
@@ -50,7 +51,7 @@ export const dailyQuotesStyle = StyleSheet.create({
         paddingHorizontal: 40,
         borderTopRightRadius: 25,
         borderBottomRightRadius: 25,
-        marginLeft: -10
+        marginLeft: -4
     },
 
     icon: {

@@ -103,6 +103,9 @@ if(data!==null){
 
             <TouchableOpacity
               style={dailyQuotesStyle.midBtn}
+              onPress={()=>{
+                getQuoteHandller()
+              }}
             >
                 <Feather  
                   name='plus'
@@ -113,6 +116,9 @@ if(data!==null){
 
             <TouchableOpacity
               style={dailyQuotesStyle.rightBtn}
+              onPress={()=>{
+                  navigation.navigate('Settings')
+                }}
             >
                 <Feather  
                     name='settings'
