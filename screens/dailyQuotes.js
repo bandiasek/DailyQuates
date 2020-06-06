@@ -2,6 +2,7 @@ import React,{ useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, AsyncStorage, Button, ImageBackground,} from 'react-native';
 import { dailyQuotesStyle } from '../style/dailyQuotesStyle';
 import * as Animatable from 'react-native-animatable';
+import Feather from 'react-native-vector-icons/Feather';
 
 import Quotation from '../components/quotation';
 import DataNull from '../components/dataNull';
@@ -86,10 +87,35 @@ if(data!==null){
         </View>
 
         <View style={dailyQuotesStyle.footer}>
-            <Button 
-              title='pres to settings'
-              onPress={()=>navigation.navigate('Settings')}
-            />
+            
+            <TouchableOpacity
+              style={dailyQuotesStyle.leftBtn}
+            >
+                <Feather  
+                  name='share'
+                  size={40}
+                />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={dailyQuotesStyle.midBtn}
+            >
+                <Feather  
+                  name='plus-circle'
+                  size={75}
+                  style={dailyQuotesStyle.icon}
+                />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={dailyQuotesStyle.rightBtn}
+            >
+                <Feather  
+                    name='settings'
+                    size={40}
+                  />
+            </TouchableOpacity>
+
         </View>
 
         </ImageBackground>

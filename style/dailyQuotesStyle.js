@@ -22,8 +22,29 @@ export const dailyQuotesStyle = StyleSheet.create({
 
     footer:{
         flex: 2,
-        padding:10
-      }, 
+        padding:10,
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+      },
+
+    leftBtn: {
+        backgroundColor: 'white'
+    },
+
+    midBtn: {
+        backgroundColor: 'white',
+       
+    },
+
+    rightBtn: {
+        backgroundColor: 'white'
+    },
+
+    icon: {
+    
+    },
+
     background: {
         flex: 1,
         resizeMode:'cover',
