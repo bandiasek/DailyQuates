@@ -1,13 +1,6 @@
 import { StyleSheet } from 'react-native';
 
 export const registerStyle = StyleSheet.create({
-
-    wrapper: {
-        flex:1,
-        justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center',
-    },
     
     container: {
         flex: 1,
@@ -84,6 +77,10 @@ export const registerStyle = StyleSheet.create({
         fontSize:25,
         color: '#272523'
     },
-
-
+    background: {
+        flex: 1,
+        resizeMode:'cover',
+        justifyContent: 'center'
+        
+      }, 
 });

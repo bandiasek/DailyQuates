@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
-import { Text, View, AsyncStorage, TouchableOpacity, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Text, View, AsyncStorage, TouchableOpacity, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ImageBackground } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { registerStyle } from '../style/registerStyle';
 import Logo from '../components/logo';
@@ -92,7 +92,7 @@ export default function Register({navigation }) {
                 console.log('--------------------------');
                 console.log('starting fetch mathod --->');
                     fetch(
-                        'http://192.168.0.111:8000/api/register',
+                        'http://dailyquotes.project-samson.com/api/register',
                         {
                             method: 'POST',
                             headers: {
@@ -137,6 +137,10 @@ export default function Register({navigation }) {
         <KeyboardAvoidingView
             behavior='padding'
             style={registerStyle.container}   
+            >
+            <ImageBackground 
+                source={require('../assets/background.jpg')}
+                style={registerStyle.background}
             >
             <Animatable.View 
                 style={registerStyle.header}
@@ -266,6 +270,7 @@ export default function Register({navigation }) {
 
             </Animatable.View>
             
+            </ImageBackground>
         </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );

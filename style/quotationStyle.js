@@ -1,38 +1,68 @@
 import { StyleSheet } from 'react-native';
 
 export const quotationStyles = StyleSheet.create({
+    
     container: {
-        flex: 3,
+        flex: 1,
+        alignContent: 'center',
+        paddingHorizontal: 40
+      },
+
+    header: {
+        flex: 1,
         alignItems: 'center',
-    },
-    
-    quote: {
-        padding: 50,
+        justifyContent: 'flex-start',
+        position:'relative',
+        borderBottomWidth: 3
+      },
+
+    body:{
+        flex: 10,
+        justifyContent:'center',
+        alignContent: 'center',
+        alignItems: 'center'
+      },
+
+      text: {
+        textAlign: 'center',
+        fontSize: 25,
+        color: '#46505c'
+      },
+
+    footer:{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        borderBottomWidth: 3,
+        position:'relative',
+      },
+      
+    image: {
+        zIndex: 10,
+        resizeMode: 'contain',
+        aspectRatio: 1.2,
+      },
+      
+    imgView: {
         position: 'absolute',
+        top: -10
     },
 
-    naming: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        paddingBottom:10
-    },
-    
-    quoteText: {
-        fontSize: 27,
-        textAlign: "center"
+    autorView: {
+      alignItems: 'flex-end'
     },
 
-    lowerBar: {
-        flexDirection: 'row',
-        position: 'absolute',
-        bottom: 70
+    autorText: {
+        textAlign: 'center',
+        fontSize: 18,
+        padding: 5,
+        color: '#46505c'
     },
 
-    background: {
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-        zIndex: 5000
-
+    quoteIcon: {
+        position:'absolute',
+        zIndex: 20,
+        top: 25,
+        left: 42
     }
 });
