@@ -62,7 +62,7 @@ export default function Quotation({ quoteData}) {
                     <Text
                         style={quotationStyles.autorText}
                     >
-                        {quoteData.author.split(' ').join('\n')}
+                        {/\s/.test(quoteData.author) ? quoteData.author.split(' ').join('\n') : quoteData.author}
                     </Text>
                 </Animatable.View>                    
 
