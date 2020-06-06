@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Image, AsyncStorage, Button,} from 'react-native';
+import { Text, View, TouchableOpacity, Image, AsyncStorage, Button, ImageBackground,} from 'react-native';
 import { dailyQuotesStyle } from '../style/dailyQuotesStyle';
 import * as Animatable from 'react-native-animatable';
 
@@ -69,7 +69,11 @@ export default function DailyQuotes({ navigation }) {
 if(data!==null){
   return (
     <View style={dailyQuotesStyle.container} >
-        
+        <ImageBackground 
+          source={require('../assets/background.jpg')}
+          style={dailyQuotesStyle.background}
+        >
+
         <Animatable.View 
             style={dailyQuotesStyle.header}
             animation='bounceInDown'
@@ -88,6 +92,7 @@ if(data!==null){
             />
         </View>
 
+        </ImageBackground>
     </View>
     );
   }

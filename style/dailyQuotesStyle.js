@@ -23,7 +23,11 @@ export const dailyQuotesStyle = StyleSheet.create({
     footer:{
         flex: 2,
         padding:10
-      },  
-    
-    
+      }, 
+    background: {
+        flex: 1,
+        resizeMode:'cover',
+        justifyContent: 'center'
+        
+      }, 
 });

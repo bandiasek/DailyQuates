@@ -77,6 +77,10 @@ export const registerStyle = StyleSheet.create({
         fontSize:25,
         color: '#272523'
     },
-
-
+    background: {
+        flex: 1,
+        resizeMode:'cover',
+        justifyContent: 'center'
+        
+      }, 
 });
