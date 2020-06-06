@@ -24,25 +24,37 @@ export const dailyQuotesStyle = StyleSheet.create({
         flex: 2,
         padding:10,
         flexDirection: 'row',
-        justifyContent: 'space-evenly',
+        justifyContent: 'center',
         alignItems: 'center'
       },
 
     leftBtn: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        paddingVertical: 5,
+        paddingHorizontal: 40,
+        borderTopLeftRadius: 25,
+        borderBottomLeftRadius: 25,
+        marginRight: -10
     },
 
     midBtn: {
         backgroundColor: 'white',
+        borderRadius: 55,
+        padding: 5
        
     },
 
     rightBtn: {
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        paddingVertical: 5,
+        paddingHorizontal: 40,
+        borderTopRightRadius: 25,
+        borderBottomRightRadius: 25,
+        marginLeft: -10
     },
 
     icon: {
-    
+      color: '#46505c'
     },
 
     background: {

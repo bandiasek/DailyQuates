@@ -86,14 +86,18 @@ if(data!==null){
             <Quotation quoteData={showingQuote} />
         </View>
 
-        <View style={dailyQuotesStyle.footer}>
+        <Animatable.View 
+          style={dailyQuotesStyle.footer}
+          animation='bounceInUp'
+        >
             
             <TouchableOpacity
               style={dailyQuotesStyle.leftBtn}
             >
                 <Feather  
                   name='share'
-                  size={40}
+                  size={30}
+                  style={dailyQuotesStyle.icon}
                 />
             </TouchableOpacity>
 
@@ -101,7 +105,7 @@ if(data!==null){
               style={dailyQuotesStyle.midBtn}
             >
                 <Feather  
-                  name='plus-circle'
+                  name='plus'
                   size={75}
                   style={dailyQuotesStyle.icon}
                 />
@@ -112,11 +116,12 @@ if(data!==null){
             >
                 <Feather  
                     name='settings'
-                    size={40}
+                    size={30}
+                    style={dailyQuotesStyle.icon}
                   />
             </TouchableOpacity>
 
-        </View>
+        </Animatable.View>
 
         </ImageBackground>
     </View>
