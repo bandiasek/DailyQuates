@@ -26,7 +26,7 @@ export const quotationStyles = StyleSheet.create({
       text: {
         textAlign: 'center',
         fontSize: 25,
-        color:'#272523'
+        color: '#46505c'
       },
 
     footer:{
@@ -48,11 +48,15 @@ export const quotationStyles = StyleSheet.create({
         top: -10
     },
 
+    autorView: {
+      alignItems: 'flex-end'
+    },
+
     autorText: {
-        textAlign: 'right',
-        fontSize: 16,
+        textAlign: 'center',
+        fontSize: 18,
         padding: 5,
-        color: '#272523'
+        color: '#46505c'
     },
 
     quoteIcon: {

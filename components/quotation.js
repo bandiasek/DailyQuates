@@ -54,12 +54,17 @@ export default function Quotation({ quoteData}) {
                     </View>    
                 </Animatable.View>
 
-                <Animatable.Text 
-                    style={quotationStyles.autorText}
+                
+                <Animatable.View
                     animation='bounceInRight'
+                    style={quotationStyles.autorView}
                 >
-                    {quoteData.author}
-                </Animatable.Text>
+                    <Text
+                        style={quotationStyles.autorText}
+                    >
+                        {quoteData.author.split(' ').join('\n')}
+                    </Text>
+                </Animatable.View>                    
 
             </View>
         );
