@@ -3,34 +3,42 @@ import { Text, View, AsyncStorage, TouchableOpacity } from 'react-native';
 import { firstStartStyle } from '../style/languageSettingStyle';
 
 export default function LanguageSetting({navigation }) {
+   /*----basic-data-storages----*/
 
     /*----all-functions----------*/
+    const saveStorage = async(value) => {
+        console.log('saving> '+value)
+        try{
+            await AsyncStorage.setItem('userChoice', value)
+        }catch(error){
+            console.log('error has occured: '+error)
+        }
+    }
+    
+    
     const setUserChoice = (userChoice) =>{
-        AsyncStorage.setItem('userChoice', userChoice);
+        if(userChoice=='slovak'){
+           saveStorage('slovak');
+           navigation.navigate('Auth');
 
-        if(userChoice=='english'){
-            AsyncStorage.setItem('author', 'Your developers.');
-            AsyncStorage.setItem('text', 'Use the button to get a quote...');
-            
-            navigation.navigate('DailyQuotes', {userChoice: userChoice, author: 'Your developers', text: 'Use the button to get a quote...'});
-        
-        }else if(userChoice=='slovak'){
-            AsyncStorage.setItem('author', 'Vaši vývojári.');
-            AsyncStorage.setItem('text', 'Pre získanie citátu použi tlačidlo...');
-            
-            navigation.navigate('DailyQuotes', {userChoice: userChoice, author: 'Vaši vývojári.', text: 'Pre získanie citátu použi tlačidlo...'});
 
-        }else{console.log('Failed to set default quote');}
-      }
+        } else if(userChoice=='english'){
+            saveStorage('englsih');
+            navigation.navigate('Auth');
+
+         }else {
+             console.log('eroor has occured, setting data failed');
+         }
+
+    }
       
 
-    const checkSettings = async () => {   //treba este upravit a skomprimovat
+    const checkSettings = async () => { 
         try {
             let asyncUserChoice = await AsyncStorage.getItem('userChoice');
-            let asyncAuthor = await AsyncStorage.getItem('author');
-            let asyncText = await AsyncStorage.getItem('text');
+            console.log('userChoice has been loaded: '+asyncUserChoice);
             if(asyncUserChoice!==null){
-                navigation.navigate('DailyQuotes', {userChoice: asyncUserChoice, author: asyncAuthor, text: asyncText});
+                navigation.navigate('Auth');
             }
     
         }catch(error){
@@ -40,7 +48,7 @@ export default function LanguageSetting({navigation }) {
 
     /*----all-hooks--------------*/
     useEffect(()=>{
-        console.log('Language choosing page has been loaded');
+        console.log('UseEffect has been loaded >> languageSettings');
         checkSettings();
     });
     

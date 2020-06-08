@@ -1,13 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-export const authStyle = StyleSheet.create({
-
-    wrapper: {
-        flex:1,
-        justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center',
-    },
+export const registerStyle = StyleSheet.create({
     
     container: {
         flex: 1,
@@ -74,7 +67,7 @@ export const authStyle = StyleSheet.create({
         color: '#ECECEC'
     },
     signUpOpacity:{
-        marginTop:200,
+        marginTop:80,
         position:'relative',
         borderBottomColor: '#272523',
         borderBottomWidth: 2

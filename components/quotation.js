@@ -1,28 +1,72 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { Text, View, Image} from 'react-native';
 import { quotationStyles } from '../style/quotationStyle.js';
+import Entypo from 'react-native-vector-icons/Entypo';
+import * as Font from 'expo-font'
+import * as Animatable from 'react-native-animatable';
 
-export default function Quotation({quote, language}) {
+export default function Quotation({ quoteData}) {
+
     return(
-        <View style={quotationStyles.container}>
-            <ImageBackground style={quotationStyles.background} source={require("../assets/backgroundQuote.png")}/>
-            <View style={quotationStyles.quote}>
-    <Text style={{paddingLeft:'70%',fontSize: 20,fontWeight: 'bold',paddingBottom:10, paddingTop:30}}>[{language.quotation.quote}]</Text>
-                <Text style={quotationStyles.quoteText}>{quote.text}</Text>
-            </View>
+            <View style={quotationStyles.container} >
 
-            <View style={quotationStyles.lowerBar}>
-                <View style={{alignItems:'center',paddingRight:25}}>
-                    <Text style={quotationStyles.naming}>[{language.quotation.date}]</Text>
-                    <Text>.....</Text>
-                </View>
-                <View style={{alignItems:'center',paddingLeft:25}}>
-                    <Text style={quotationStyles.naming}>[{language.quotation.author}]</Text>
-                    <Text >{quote.autor}</Text>
-                </View>
+                <Animatable.View 
+                    style={quotationStyles.header}
+                    animation='bounceInLeft'
+                >
+                    <View style={quotationStyles.imgView}>
+                        <Image 
+                            source={require('../assets/heartYellow.png')}
+                            style={quotationStyles.image}
+                        />
+                        <Entypo 
+                            name='quote'
+                            size={40}
+                            style={quotationStyles.quoteIcon}
+                        />   
+                    </View>
+                </Animatable.View>
+
+                <Animatable.View 
+                    style={quotationStyles.body}
+                    animation='bounceIn'
+                >
+                    <Text style={quotationStyles.text}>
+                        {quoteData.text}
+                    </Text>
+                </Animatable.View>
+
+                <Animatable.View 
+                    style={quotationStyles.footer}
+                    animation='bounceInRight'
+                >
+                    <View style={quotationStyles.imgView}>
+                        <Image 
+                            source={require('../assets/heartYellow.png')}
+                            style={quotationStyles.image}
+                        />
+                        <Entypo 
+                            name='quote'
+                            size={40}
+                            style={quotationStyles.quoteIcon}
+                            
+                        />
+                    </View>    
+                </Animatable.View>
+
+                
+                <Animatable.View
+                    animation='bounceInRight'
+                    style={quotationStyles.autorView}
+                >
+                    <Text
+                        style={quotationStyles.autorText}
+                    >
+                        {/\s/.test(quoteData.author) ? quoteData.author.split(' ').join('\n') : quoteData.author}
+                    </Text>
+                </Animatable.View>                    
+
             </View>
-        
-        </View>
-    );
+        );
 }
 

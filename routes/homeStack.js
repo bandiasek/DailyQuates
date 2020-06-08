@@ -4,21 +4,32 @@ import DailyQuotes from '../screens/dailyQuotes';
 import Settings from '../screens/settings';
 import LanguageSetting from '../screens/languageSetting';
 import Auth from '../screens/auth';
+import Register from '../screens/register';
 
-const screens = {
-    Auth: {
-        screen: Auth,
-        navigationOptions: {
-            title: 'Auth',
-            headerShown: false 
-        }
-    },
-    
+const screens = { 
     LanguageSetting: {
         screen: LanguageSetting,
         navigationOptions: {
             title: 'Language Setting',
-            headerShown: false 
+            headerShown: false,
+            gestureEnabled: false,
+        }
+    },
+
+    Auth: {
+        screen: Auth,
+        navigationOptions: {
+            title: 'Auth',
+            headerShown: false,
+            gestureEnabled: false,
+        }
+    },
+
+    Register: {
+        screen: Register,
+        navigationOptions: {
+            title: 'Register',
+            headerShown: false,
         }
     },
     
@@ -26,14 +37,15 @@ const screens = {
         screen: DailyQuotes,
         navigationOptions: {
             title: 'Daily Quotes',
-            headerShown: false  
+            headerShown: false,
+            gestureEnabled: false, 
         }
     },
 
     Settings: {
         screen: Settings,
         navigationOptions: {
-            title: 'Daily Quotes',
+            title: 'Settings',
             headerShown: false  
         }
     }

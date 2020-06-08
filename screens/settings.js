@@ -1,13 +1,16 @@
 import React from 'react';
-import { Text, View, Button, AsyncStorage } from 'react-native';
+import { Text, View, Button, AsyncStorage, ImageBackground } from 'react-native';
 import { settingsStyle } from '../style/settingsStyle';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Feather from 'react-native-vector-icons/Feather';
+import * as Animatable from 'react-native-animatable';
 
 export default function Settings({navigation }) {
   
   /*Async storage to store user choice*/
   const logout = async () => {
     try {
-        await AsyncStorage.removeItem('email');
+        await AsyncStorage.removeItem('token');
         alert('Reštartujte aplikáciu pre dokončenie a aplikovanie zmien');
     }
     catch(exception) {
@@ -32,29 +35,93 @@ export default function Settings({navigation }) {
 
   return (
     <View style={settingsStyle.container}>
+       <ImageBackground 
+          source={require('../assets/background.jpg')}
+          style={settingsStyle.background}
+        >
 
-      <View style={settingsStyle.section}>
-        <Text style={settingsStyle.headings} >Notifikácie</Text>
-          <View>
-              <Button title='ano' />
-              <Button title='nie' />
-          </View>
+      <Animatable.View 
+        style={settingsStyle.header}
+        animation='bounceInDown'
+      >
+        <Text style={settingsStyle.heading}>
+          Settings
+        </Text>
+      </Animatable.View>
+
+      <View style={settingsStyle.body}>
+        
+        <Animatable.View 
+          style={settingsStyle.section}
+          animation='bounceIn'
+        >
+          <Text style={settingsStyle.sectionText}>
+            Zmena jazyka
+          </Text>
+          <TouchableOpacity
+            style={settingsStyle.sectionBtn}
+            onPress={()=>{reset()}}
+          >
+            <Feather 
+              name='corner-down-right'
+              size={30}
+              style={settingsStyle.icon}
+            />
+            <Text style={settingsStyle.sectionBtnText}>
+              click here
+            </Text>
+          </TouchableOpacity>
+        </Animatable.View>
+
+        <Animatable.View 
+          style={settingsStyle.section}
+          animation='bounceIn'
+        >
+          <Text style={settingsStyle.sectionText}>
+            Zmena uctu
+          </Text>
+          <TouchableOpacity
+            style={settingsStyle.sectionBtn}
+            onPress={()=>{logout()}}
+          >
+            <Feather 
+              name='log-out'
+              size={30}
+              style={settingsStyle.icon}
+            />
+            <Text style={settingsStyle.sectionBtnText}>
+              Sign out
+            </Text>
+          </TouchableOpacity>
+        </Animatable.View>
+
       </View>
 
-      <View style={settingsStyle.section}>
-        <Text style={settingsStyle.headings} >Zmena jazyka</Text>
-              <Button title='Zmena jazyka' onPress={()=> {reset();}}/>
-      </View>
-
-      <View style={settingsStyle.section}>
-        <Text style={settingsStyle.headings} >Zmena uzivatela</Text>
-              <Button title='Odhlasit sa' onPress={()=> {logout();}}/>
-      </View>
-
-      <View style={settingsStyle.section}>
-        <Button title='Nas5' onPress={()=>{backHandler();}}/>
-      </View>
-
+      <Animatable.View 
+        style={settingsStyle.footer}
+        animation='bounceInRight'
+      >
+        <TouchableOpacity
+          style={settingsStyle.backBtn}
+          onPress={()=>{navigation.goBack()}}
+        >
+        <Feather 
+              name='chevron-left'
+              size={25}
+              style={{
+                paddingTop: 5,
+                color: 'white'
+              }}
+            />
+          <Text
+            style={settingsStyle.textBtn}
+          >
+            Back
+          </Text>
+        </TouchableOpacity>
+      </Animatable.View>
+      
+      </ImageBackground>         
     </View>
   );
 }
