@@ -1,53 +1,87 @@
 {
-    "renderQuoteData":{
-        "namingQuote":"quote",
-        "namingAuthor":"author"
+    "dailyQuotes":{
+
+        "showingQuoteData":{
+            "author": "Your developers.",
+            "text": "Use PLUS to get a quote..."
+        },
+        "quotes":[
+            {
+                "author":"Unknown",
+                "text":"Dream as if you'll live forever. Live as if you'll die today."
+            },
+            {
+                "author":"Unknown",
+                "text":"Anyone who stops learning is old, whether at twenty or eighty. Anyone who keeps learning stays young."
+            },
+            {
+                "author":"Unknown",
+                "text":"Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment."
+            },
+            {
+                "author":"Unknown",
+                "text":"Give a girl the right shoes, and she can conquer the world."
+            },
+            {
+                "author":"Unknown",
+                "text":"Only two things are infinite, the universe and human stupidity, and I´m not sure about the universe."
+            },
+            {
+                "author":"Unknown",
+                "text":"While we are postponing, life speeds by."
+            },
+            {
+                "author":"Unknown",
+                "text":"Tomorrow, life is too late. Live today."
+            },
+            {
+                "author":"Unknown",
+                "text":"Never, never, never, never give up."
+            },
+            {
+                "author":"Unknown",
+                "text":"And the trouble is, if you don´t risk anything, you risk even more."
+            },
+            {
+                "author":"Unknown",
+                "text":"Only when we are no longer afraid do we begin to live."
+            }
+        ]
+
     },
-    "showingQuoteData":{
-        "author": "Your developers.",
-        "text": "Use the button to get a quote..."
+
+    "auth":{
+        
+        "loginText":"LOGIN",
+        "mail":"Your Mail",
+        "pass":"Your Password",
+        "loginBtn":"Sign In",
+        "registerText":"Don't have an account ?"
+
     },
-    "button": "Get quote",
-    "quotes":[
-        {
-            "author":"Unknown",
-            "text":"Dream as if you'll live forever. Live as if you'll die today."
-        },
-        {
-            "author":"Unknown",
-            "text":"Anyone who stops learning is old, whether at twenty or eighty. Anyone who keeps learning stays young."
-        },
-        {
-            "author":"Unknown",
-            "text":"Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment."
-        },
-        {
-            "author":"Unknown",
-            "text":"Give a girl the right shoes, and she can conquer the world."
-        },
-        {
-            "author":"Unknown",
-            "text":"Only two things are infinite, the universe and human stupidity, and I´m not sure about the universe."
-        },
-        {
-            "author":"Unknown",
-            "text":"While we are postponing, life speeds by."
-        },
-        {
-            "author":"Unknown",
-            "text":"Tomorrow, life is too late. Live today."
-        },
-        {
-            "author":"Unknown",
-            "text":"Never, never, never, never give up."
-        },
-        {
-            "author":"Unknown",
-            "text":"And the trouble is, if you don´t risk anything, you risk even more."
-        },
-        {
-            "author":"Unknown",
-            "text":"Only when we are no longer afraid do we begin to live."
-        }
-    ]
+
+    "register":{
+
+        "registerText":"REGISTER",
+        "nickname":"Your Nickname",
+        "mail":"Your Mail",
+        "pass":"Your Password",
+        "conPass":"Confirm Password",
+        "registerBtn":"Sign Up",
+        "loginText":"Already registered ?"
+
+    },
+
+    "settings":{
+
+        "settings":"Settings",
+        "changeLanText":"Language change",
+        "changeLanBtn":"Click here",
+        "changeUserText":"User change",
+        "changeUserBtn":"Sign out",
+        "back":"Back"
+
+    }
+
+    
 }

@@ -1,53 +1,87 @@
-{
-    "renderQuoteData":{
-        "namingQuote":"Citát",
-        "namingAuthor":"Autor"
+{   
+    "dailyQuotes":{
+        
+        "showingQuoteData":{
+            "author": "Vaši vývojári.",
+            "text": "Pre získanie citátu použi tlačidlo plus..."
+            },
+
+        "quotes":[
+            {
+                "author":"Riadky Života",
+                "text":"Keď ukážeš svoje slabé stránky, prídu ľudia, ktorí ich zneužijú a prídu i tí, ktorí ti ich pomôžu strážiť. Tak spoznáš hodnotu ľudí..."
+            },
+            {
+                "author":"Riadky Života",
+                "text":"Ľudia sú občas zvláštní. V jeden deň si pre nich dôležitý a na druhý deň si bezcenný."
+            },
+            {
+                "author":"Riadky Života",
+                "text":"Keď nájdeš čas ozvi sa, lebo ja už to neurobím nikdy...snahy z mojej strany bolo dosť."
+            },
+            {
+                "author":"Riadky Života",
+                "text":"Ak si s niekym koho nazývaš kamarát/ka v každodennom kontakte viac ako 5 rokov, už nie ste len kamaráti.. už ste rodina."
+            },
+            {
+                "author":"Riadky Života",
+                "text":"Sú oči, ktoré ti povedia všetko. A sú slová, ktoré ti nepovedia vôbec nič."
+            },
+            {
+                "author":"Riadky Života",
+                "text":"Je jednoduché získať 40 priateľov za rok. No udržať si jednu priateľku 40 rokov je špeciálne."
+            },
+            {
+                "author":"Riadky Života",
+                "text":"Ak je koniec odíď. Nepolievaj viac odkvitnutú ružu."
+            },
+            {
+                "author":"Riadky Života",
+                "text":"Ukáž dievčaťu, že nemáš záujem a začne ťa naháňať. Ukáž žene, že nemáš záujem a nahradí ťa."
+            },
+            {
+                "author":"Riadky Života",
+                "text":"Možno žiarlím, alebo mám len strach, že o teba prídem."
+            },
+            {
+                "author":"Riadky Života",
+                "text":"Nastaviť si hranice znamená mať rád sám seba aj za cenu toho, že by sa to ostatným nemuselo páčiť."
+            }
+        ]  
+
     },
-    "showingQuoteData":{
-        "author": "Vaši vývojári.",
-        "text": "Pre získanie citátu použi tlačidlo..."
+    
+    "auth":{
+        
+        "loginText":"PRIHLÁSENIE",
+        "mail":"Tvoj mail",
+        "pass":"Tvoje Heslo",
+        "loginBtn":"Prihlásiť",
+        "registerText":"Nemáš ešte účet ?"
+
     },
-    "button": "Získaj citát",
-    "quotes":[
-        {
-            "author":"Riadky Života",
-            "text":"Keď ukážeš svoje slabé stránky, prídu ľudia, ktorí ich zneužijú a prídu i tí, ktorí ti ich pomôžu strážiť. Tak spoznáš hodnotu ľudí..."
-        },
-        {
-            "author":"Riadky Života",
-            "text":"Ľudia sú občas zvláštní. V jeden deň si pre nich dôležitý a na druhý deň si bezcenný."
-        },
-        {
-            "author":"Riadky Života",
-            "text":"Keď nájdeš čas ozvi sa, lebo ja už to neurobím nikdy...snahy z mojej strany bolo dosť."
-        },
-        {
-            "author":"Riadky Života",
-            "text":"Ak si s niekym koho nazývaš kamarát/ka v každodennom kontakte viac ako 5 rokov, už nie ste len kamaráti.. už ste rodina."
-        },
-        {
-            "author":"Riadky Života",
-            "text":"Sú oči, ktoré ti povedia všetko. A sú slová, ktoré ti nepovedia vôbec nič."
-        },
-        {
-            "author":"Riadky Života",
-            "text":"Je jednoduché získať 40 priateľov za rok. No udržať si jednu priateľku 40 rokov je špeciálne."
-        },
-        {
-            "author":"Riadky Života",
-            "text":"Ak je koniec odíď. Nepolievaj viac odkvitnutú ružu."
-        },
-        {
-            "author":"Riadky Života",
-            "text":"Ukáž dievčaťu, že nemáš záujem a začne ťa naháňať. Ukáž žene, že nemáš záujem a nahradí ťa."
-        },
-        {
-            "author":"Riadky Života",
-            "text":"Možno žiarlím, alebo mám len strach, že o teba prídem."
-        },
-        {
-            "author":"Riadky Života",
-            "text":"Nastaviť si hranice znamená mať rád sám seba aj za cenu toho, že by sa to ostatným nemuselo páčiť."
-        }
-    ]
+
+    "register":{
+
+        "registerText":"REGISTRÁCIA",
+        "nickname":"Tvoja Prezývka",
+        "mail":"Tvoj mail",
+        "pass":"Tvoje Heslo",
+        "conPass":"Potvrdené Heslo",
+        "registerBtn":"Registrovať",
+        "loginText":"Už si registrovaný ?"
+
+    },
+
+    "settings":{
+
+        "settings":"Nastavenia",
+        "changeLanText":"Zmena jazyka",
+        "changeLanBtn":"Klikni sem",
+        "changeUserText":"Zmena účtu",
+        "changeUserBtn":"Odhlásiť sa",
+        "back":"Naspäť"
+
+    }
+
 }
