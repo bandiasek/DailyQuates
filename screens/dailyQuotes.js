@@ -13,7 +13,7 @@ export default function DailyQuotes({ navigation }) {
 
     /*----basic-data-storages----*/
     const [showingQuote, setShowingQuote] = useState(null);
-    const syntax = useContext(FuncContext);
+    const {syntax} = useContext(FuncContext);
 
   /*----all-functions----------*/
   const getRandomInt = (max) => {

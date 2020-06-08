@@ -1,9 +1,10 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import { Text, View, AsyncStorage, TouchableOpacity, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ImageBackground } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { registerStyle } from '../style/registerStyle';
 import Logo from '../components/logo';
+import {FuncContext} from '../components/funcContext';
 
 
 export default function Register({navigation }) {
@@ -18,6 +19,8 @@ export default function Register({navigation }) {
         confirmPasswordCorrect: false,
         secureTextEntry: true,
     });
+
+    const { signUp } = useContext(FuncContext);
 
     /*----all-functions----------*/
     const emailInputChange = (value) => {
@@ -73,7 +76,7 @@ export default function Register({navigation }) {
             if(data.emailCorrect){
                 if(data.password!==''){
                     if(data.confirmPasswordCorrect){
-                        registerRemote();
+                        signUp(data.name, data.email, data.password, data.confirmPassword)
                     }else{
                         alert('Confirm password is incorrect');
                     }
@@ -88,48 +91,11 @@ export default function Register({navigation }) {
         }
     }
    
-    const registerRemote = () => {
-                console.log('--------------------------');
-                console.log('starting fetch mathod --->');
-                    fetch(
-                        'http://dailyquotes.project-samson.com/api/register',
-                        {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                name: data.name,
-                                email: data.email,
-                                password: data.password,
-                                c_password: data.confirmPassword,
-                            })
-                        })
-                        
-                        .then((response)=>response.json())
-                        .then((res) => {
-                            console.log(res.state == 1 ? 'succesfuly registered' : 'registration failed');
-                            if(res.state){
-                                AsyncStorage.setItem('token', res.success.token);
-                                navigation.navigate('DailyQuotes');
-                            }else{
-                                alert('Registration failed');
-                            }
-
-                        })
-                        .catch((error)=>{
-                            alert(error);
-                        })
-                        .done();
-                        console.log('fetch method is done');
-                        console.log('--------------------------');       
-        }
-        
+    
 
     /*----all-hooks--------------*/
     useEffect(()=>{
-  
+        console.log('UseEffect has been loaded >> register');
     },[]);
     
   return (

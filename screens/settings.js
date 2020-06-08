@@ -10,9 +10,6 @@ export default function Settings({navigation }) {
   
   const { signOut, remChoice, syntax } = useContext(FuncContext);
 
-  const backHandler = () => {
-    navigation.pop();
-  }
 
   return (
     <View style={settingsStyle.container}>

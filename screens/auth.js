@@ -4,7 +4,7 @@ import { Text, View, AsyncStorage, TouchableOpacity, TextInput, TouchableWithout
 import * as Animatable from 'react-native-animatable';
 import { authStyle } from '../style/authStyle';
 import Logo from '../components/logo';
-import FuncContext from '../components/funcContext';
+import {FuncContext} from '../components/funcContext';
 
 
 export default function Auth({navigation }) {
@@ -49,7 +49,7 @@ export default function Auth({navigation }) {
 
     /*----all-hooks--------------*/
     useEffect(()=>{
-
+        console.log('UseEffect has been loaded >> auth');
     },[]);
     
   return (

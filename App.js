@@ -1,11 +1,13 @@
 import React,{ useState, useEffect, useMemo } from 'react';
-import HomeStack from './routes/homeStack';
-import AuthStack from './routes/authStack';
-import LanguageSettings from './screens/languageSetting';
 import { ActivityIndicator, AsyncStorage, View } from 'react-native';
 import {FuncContext} from './components/funcContext';
+
 import dailyQuotesEnglish from './public/dailyQuotesEnglish.json';
 import dailyQuotesSlovak from './public/dailyQuotesSlovak.json';
+
+import HomeStack from './routes/homeStack';
+import AuthStack from './routes/authStack';
+import LanguageSetting from './screens/languageSetting';
 
 export default function App() {
 /*----all-data---------------*/
@@ -119,7 +121,8 @@ const funcContext = useMemo(()=>({
         };
      setIsLoading(false);   
   },
-
+  syntax,
+  setSyntax
 }));
 
 /*----functions---------------*/
@@ -184,7 +187,7 @@ useEffect(()=>{
           
           return(
             <FuncContext.Provider value={funcContext}>
-                <LanguageSettings />
+                <LanguageSetting />
             </FuncContext.Provider>
           );
     }
@@ -193,14 +196,14 @@ useEffect(()=>{
               
               return(
                 
-                <FuncContext.Provider value={funcContext, syntax}>
+                <FuncContext.Provider value={funcContext}>
                   <AuthStack />
                 </FuncContext.Provider>
               
               );
     }
     return(
-      <FuncContext.Provider value={funcContext, syntax}>
+      <FuncContext.Provider value={funcContext}>
         <HomeStack />
       </FuncContext.Provider>
     );
