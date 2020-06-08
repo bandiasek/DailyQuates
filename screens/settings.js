@@ -23,7 +23,7 @@ export default function Settings({navigation }) {
         animation='bounceInDown'
       >
         <Text style={settingsStyle.heading}>
-          Settings
+          {syntax.settings.settings}
         </Text>
       </Animatable.View>
 
@@ -34,7 +34,7 @@ export default function Settings({navigation }) {
           animation='bounceIn'
         >
           <Text style={settingsStyle.sectionText}>
-            Zmena jazyka
+            {syntax.settings.changeLanText}
           </Text>
           <TouchableOpacity
             style={settingsStyle.sectionBtn}
@@ -46,7 +46,7 @@ export default function Settings({navigation }) {
               style={settingsStyle.icon}
             />
             <Text style={settingsStyle.sectionBtnText}>
-              click here
+              {syntax.settings.changeLanBtn}
             </Text>
           </TouchableOpacity>
         </Animatable.View>
@@ -56,7 +56,7 @@ export default function Settings({navigation }) {
           animation='bounceIn'
         >
           <Text style={settingsStyle.sectionText}>
-            Zmena uctu
+            {syntax.settings.changeUserText}
           </Text>
           <TouchableOpacity
             style={settingsStyle.sectionBtn}
@@ -68,7 +68,32 @@ export default function Settings({navigation }) {
               style={settingsStyle.icon}
             />
             <Text style={settingsStyle.sectionBtnText}>
-              Sign out
+              {syntax.settings.changeUserBtn}
+            </Text>
+          </TouchableOpacity>
+        </Animatable.View>
+
+        <Animatable.View 
+          style={settingsStyle.section}
+          animation='bounceIn'
+        >
+          <Text style={settingsStyle.sectionText}>
+            Clear
+          </Text>
+          <TouchableOpacity
+            style={settingsStyle.sectionBtn}
+            onPress={()=>{
+              AsyncStorage.clear();
+              alert('Restart your app');
+            }}
+          >
+            <Feather 
+              name='refresh-cw'
+              size={30}
+              style={settingsStyle.icon}
+            />
+            <Text style={settingsStyle.sectionBtnText}>
+              Fresh start
             </Text>
           </TouchableOpacity>
         </Animatable.View>
@@ -94,7 +119,7 @@ export default function Settings({navigation }) {
           <Text
             style={settingsStyle.textBtn}
           >
-            Back
+            {syntax.settings.back}
           </Text>
         </TouchableOpacity>
       </Animatable.View>

@@ -15,7 +15,7 @@ export default function Auth({navigation }) {
         emailCorrect: false,
         secureTextEntry: true,
     });
-    const { signIn } = useContext(FuncContext);
+    const { signIn, syntax } = useContext(FuncContext);
 
     /*----all-functions----------*/
     const emailInputChange = (value) => {
@@ -73,7 +73,9 @@ export default function Auth({navigation }) {
                 style={authStyle.footer}
                     animation='fadeInUpBig'
             >
-                <Text style={authStyle.heading}>LOGIN</Text>
+                <Text style={authStyle.heading}>
+                    {syntax.auth.loginText}
+                </Text>
                 <View style={authStyle.inputSection}>
                     <Feather
                         name='mail'
@@ -81,7 +83,7 @@ export default function Auth({navigation }) {
                         style={authStyle.icon}
                     />
                     <TextInput
-                        placeholder='Your Email'
+                        placeholder={syntax.auth.mail}
                         autoCapitalize='none'
                         style={authStyle.textInput}
                         onChangeText={(value)=>{emailInputChange(value)}}
@@ -102,7 +104,7 @@ export default function Auth({navigation }) {
                         
                     />
                     <TextInput
-                        placeholder='Your Password'
+                        placeholder={syntax.auth.pass}
                         style={authStyle.textInput}
                         autoCapitalize='none'
                         secureTextEntry={data.secureTextEntry}
@@ -132,14 +134,18 @@ export default function Auth({navigation }) {
                         style={authStyle.signInOpacity}
                         onPress={()=>{login()}}
                     >
-                        <Text style={authStyle.signInText}>Sign In</Text>
+                        <Text style={authStyle.signInText}>
+                            {syntax.auth.loginBtn}
+                        </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity 
                         style={authStyle.signUpOpacity}
                         onPress={()=>{navigation.navigate('Register')}}    
                     >
-                        <Text style={authStyle.signUpText}>Don't have an account ?</Text>
+                        <Text style={authStyle.signUpText}>
+                            {syntax.auth.registerText}
+                        </Text>
                     </TouchableOpacity>
                 </View>
 

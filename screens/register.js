@@ -20,7 +20,7 @@ export default function Register({navigation }) {
         secureTextEntry: true,
     });
 
-    const { signUp } = useContext(FuncContext);
+    const { signUp, syntax} = useContext(FuncContext);
 
     /*----all-functions----------*/
     const emailInputChange = (value) => {
@@ -121,7 +121,9 @@ export default function Register({navigation }) {
                     style={registerStyle.footer}
                     animation='fadeInUpBig'
             >
-                <Text style={registerStyle.heading}>REGISTER</Text>
+                <Text style={registerStyle.heading}>
+                    {syntax.register.registerText}
+                </Text>
                 {/*Nickname Input*/}
                 <View style={registerStyle.inputSection}>
                     <Feather
@@ -130,7 +132,7 @@ export default function Register({navigation }) {
                         style={registerStyle.icon}
                     />
                     <TextInput
-                        placeholder='Your Nickname'
+                        placeholder={syntax.register.nickname}
                         autoCapitalize='none'
                         style={registerStyle.textInput}
                         onChangeText={(value)=>{nameInputChange(value)}}
@@ -150,7 +152,7 @@ export default function Register({navigation }) {
                         style={registerStyle.icon}
                     />
                     <TextInput
-                        placeholder='Your Email'
+                        placeholder={syntax.register.mail}
                         autoCapitalize='none'
                         style={registerStyle.textInput}
                         onChangeText={(value)=>{emailInputChange(value)}}
@@ -171,7 +173,7 @@ export default function Register({navigation }) {
                         
                     />
                     <TextInput
-                        placeholder='Your Password'
+                        placeholder={syntax.register.pass}
                         style={registerStyle.textInput}
                         autoCapitalize='none'
                         secureTextEntry={data.secureTextEntry}
@@ -204,7 +206,7 @@ export default function Register({navigation }) {
                         
                     />
                     <TextInput
-                        placeholder='Confirm Password'
+                        placeholder={syntax.register.conPass}
                         style={registerStyle.textInput}
                         autoCapitalize='none'
                         secureTextEntry={true}
@@ -223,14 +225,18 @@ export default function Register({navigation }) {
                         style={registerStyle.signInOpacity}
                         onPress={()=>{register()}}
                     >
-                        <Text style={registerStyle.signInText}>Sign Up</Text>
+                        <Text style={registerStyle.signInText}>
+                            {syntax.register.registerBtn}   
+                        </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity 
                         style={registerStyle.signUpOpacity}
                         onPress={()=>{navigation.goBack()}}    
                     >
-                        <Text style={registerStyle.signUpText}>Already registered ?</Text>
+                        <Text style={registerStyle.signUpText}>
+                            {syntax.register.loginText} 
+                        </Text>
                     </TouchableOpacity>
                 </View>
 
