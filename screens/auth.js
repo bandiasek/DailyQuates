@@ -1,9 +1,10 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState, useContext} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
 import { Text, View, AsyncStorage, TouchableOpacity, TextInput, TouchableWithoutFeedback, Keyboard, ImageBackground } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { authStyle } from '../style/authStyle';
 import Logo from '../components/logo';
+import FuncContext from '../components/funcContext';
 
 
 export default function Auth({navigation }) {
@@ -14,6 +15,7 @@ export default function Auth({navigation }) {
         emailCorrect: false,
         secureTextEntry: true,
     });
+    const { signIn } = useContext(FuncContext);
 
     /*----all-functions----------*/
     const emailInputChange = (value) => {
@@ -35,7 +37,7 @@ export default function Auth({navigation }) {
     const login = () => {
         if(data.emailCorrect){
             if(data.password!==''){
-                loginRemote();
+                signIn(data.email, data.password);
             }else{
                 alert('Password can not be empty');
             }
@@ -44,58 +46,10 @@ export default function Auth({navigation }) {
         }
     }
    
-    const loginRemote = () => {
-                console.log('--------------------------');
-                console.log('starting fetch mathod --->');
-                    fetch(
-                        'http://dailyquotes.project-samson.com/api/login',
-                        {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                email: data.email,
-                                password: data.password
-                            })
-                        })
-                        
-                        .then((response)=>response.json())
-                        .then((res) => {
-                            console.log(res.state == 1 ? 'succesfuly login' : 'login failed');
-                            if(res.state){
-                                AsyncStorage.setItem('token', res.success.token);
-                                navigation.navigate('DailyQuotes');
-                            }else{
-                                alert('Login failed');
-                            }
-
-                        })
-                        .catch((error)=>{
-                            alert(error);
-                        })
-                        .done();
-                        console.log('fetch method is done');
-                        console.log('--------------------------');       
-        }
-        
-    const checkLogin = async () => {
-        try{
-            var value = await AsyncStorage.getItem('token');
-            if(value!== null){
-                console.log('User is already logged in');
-                navigation.navigate('DailyQuotes');
-            }
-
-        }catch(error){
-            alert(error);
-        }
-    }
 
     /*----all-hooks--------------*/
     useEffect(()=>{
-        checkLogin();
+
     },[]);
     
   return (

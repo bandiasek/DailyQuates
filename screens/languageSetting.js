@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import { Text, View, AsyncStorage, TouchableOpacity } from 'react-native';
 import { firstStartStyle } from '../style/languageSettingStyle';
 
-export default function LanguageSetting({navigation }) {
+export default function LanguageSetting({}) {
    /*----basic-data-storages----*/
 
     /*----all-functions----------*/
@@ -19,12 +19,12 @@ export default function LanguageSetting({navigation }) {
     const setUserChoice = (userChoice) =>{
         if(userChoice=='slovak'){
            saveStorage('slovak');
-           navigation.navigate('Auth');
+           //navigation.navigate('Auth');
 
 
         } else if(userChoice=='english'){
             saveStorage('englsih');
-            navigation.navigate('Auth');
+            //navigation.navigate('Auth');
 
          }else {
              console.log('eroor has occured, setting data failed');
@@ -38,7 +38,7 @@ export default function LanguageSetting({navigation }) {
             let asyncUserChoice = await AsyncStorage.getItem('userChoice');
             console.log('userChoice has been loaded: '+asyncUserChoice);
             if(asyncUserChoice!==null){
-                navigation.navigate('Auth');
+                //navigation.navigate('Auth');
             }
     
         }catch(error){

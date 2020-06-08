@@ -1,33 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Text, View, Button, AsyncStorage, ImageBackground } from 'react-native';
 import { settingsStyle } from '../style/settingsStyle';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Feather from 'react-native-vector-icons/Feather';
 import * as Animatable from 'react-native-animatable';
+import {FuncContext} from '../components/funcContext';
 
 export default function Settings({navigation }) {
   
-  /*Async storage to store user choice*/
-  const logout = async () => {
-    try {
-        await AsyncStorage.removeItem('token');
-        alert('Reštartujte aplikáciu pre dokončenie a aplikovanie zmien');
-    }
-    catch(exception) {
-        alert(exception);
-    }
-}
-
-
-  const reset = async () => {
-      try {
-          await AsyncStorage.removeItem('userChoice');
-          alert('Reštartujte aplikáciu pre dokončenie a aplikovanie zmien');
-      }
-      catch(exception) {
-          alert(exception);
-      }
-  }
+  const { signOut, remChoice, syntax } = useContext(FuncContext);
 
   const backHandler = () => {
     navigation.pop();
@@ -60,7 +41,7 @@ export default function Settings({navigation }) {
           </Text>
           <TouchableOpacity
             style={settingsStyle.sectionBtn}
-            onPress={()=>{reset()}}
+            onPress={()=>{remChoice()}}
           >
             <Feather 
               name='corner-down-right'
@@ -82,7 +63,7 @@ export default function Settings({navigation }) {
           </Text>
           <TouchableOpacity
             style={settingsStyle.sectionBtn}
-            onPress={()=>{logout()}}
+            onPress={()=>{signOut()}}
           >
             <Feather 
               name='log-out'

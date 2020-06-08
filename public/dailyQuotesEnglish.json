@@ -1,10 +1,9 @@
 {
     "dailyQuotes":{
-
-        "showingQuoteData":{
+            
             "author": "Your developers.",
-            "text": "Use PLUS to get a quote..."
-        },
+            "text": "Use PLUS to get a quote...",
+
         "quotes":[
             {
                 "author":"Unknown",

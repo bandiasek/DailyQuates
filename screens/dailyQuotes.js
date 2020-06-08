@@ -1,9 +1,10 @@
-import React,{ useState, useEffect } from 'react';
-import { Text, View, TouchableOpacity, Image, AsyncStorage, Button, ImageBackground,} from 'react-native';
+import React,{ useState, useEffect, useContext } from 'react';
+import { Text, View, TouchableOpacity, Image, AsyncStorage, Button, ImageBackground, ActivityIndicator} from 'react-native';
 import { dailyQuotesStyle } from '../style/dailyQuotesStyle';
 import * as Animatable from 'react-native-animatable';
 import Feather from 'react-native-vector-icons/Feather';
 
+import {FuncContext} from '../components/funcContext';
 import Quotation from '../components/quotation';
 import DataNull from '../components/dataNull';
 import Logo from '../components/logo';
@@ -11,8 +12,8 @@ import Logo from '../components/logo';
 export default function DailyQuotes({ navigation }) {
 
     /*----basic-data-storages----*/
-    const [data, setData] = useState(null);
     const [showingQuote, setShowingQuote] = useState(null);
+    const syntax = useContext(FuncContext);
 
   /*----all-functions----------*/
   const getRandomInt = (max) => {
@@ -21,7 +22,7 @@ export default function DailyQuotes({ navigation }) {
   
   const getQuoteHandller = () => {
     try{ 
-      setShowingQuote(data.quotes[getRandomInt(data.quotes.length)]);
+      setShowingQuote(syntax.dailyQuotes.quotes[getRandomInt(syntax.dailyQuotes.quotes.length)]);
 
     }catch(error){
 
@@ -29,114 +30,92 @@ export default function DailyQuotes({ navigation }) {
     }
   } 
 
-  const settingsHandller = () => {
-    navigation.navigate('Settings');
-  }
 
-  const declareData = async() => {
-    try{
-      await AsyncStorage.getItem('userChoice')
-        .then((userChoice)=>{
-          if(userChoice!==null){
-
-            if(userChoice==='slovak'){
-              setShowingQuote((require('../public/dailyQuotesSlovak.json')).showingQuoteData);
-              setData(require('../public/dailyQuotesSlovak.json'));
-      
-            }else{
-              setShowingQuote((require('../public/dailyQuotesEnglish.json')).showingQuoteData);
-              setData(require('../public/dailyQuotesEnglish.json'));
-
-            }
-          }else{
-            console.log('userChoice is null');
-          }
-        }).done();
-    
-    }catch(error){
-      alert(error);
-    }   
-  }
+  const handelFirstStart = () => {
+    setShowingQuote({
+      author : syntax.dailyQuotes.author,
+      text: syntax.dailyQuotes.text
+    });
+  } 
 
   
   /*----------hooks------------*/
     useEffect(()=>{
       console.log('UseEffect has been loaded >> dailyQuotes');
-      declareData();
-    
+      handelFirstStart();
     },[]);
 
   /*------render-section------*/
-if(data!==null){
-  return (
-    <View style={dailyQuotesStyle.container} >
-        <ImageBackground 
-          source={require('../assets/background.jpg')}
-          style={dailyQuotesStyle.background}
-        >
-
-        <Animatable.View 
-            style={dailyQuotesStyle.header}
-            animation='bounceInDown'
+  if(showingQuote!==null){
+    return (
+      <View style={dailyQuotesStyle.container} >
+          <ImageBackground 
+            source={require('../assets/background.jpg')}
+            style={dailyQuotesStyle.background}
           >
-            <Logo />
-        </Animatable.View>
 
-        <View style={dailyQuotesStyle.body}>
-            <Quotation quoteData={showingQuote} />
-        </View>
-
-        <Animatable.View 
-          style={dailyQuotesStyle.footer}
-          animation='bounceInUp'
-        >
-            
-            <TouchableOpacity
-              style={dailyQuotesStyle.leftBtn}
+          <Animatable.View 
+              style={dailyQuotesStyle.header}
+              animation='bounceInDown'
             >
-                <Feather  
-                  name='share'
-                  size={30}
-                  style={dailyQuotesStyle.icon}
-                />
-            </TouchableOpacity>
+              <Logo />
+          </Animatable.View>
 
-            <TouchableOpacity
-              style={dailyQuotesStyle.midBtn}
-              onPress={()=>{
-                getQuoteHandller()
-              }}
-            >
-                <Feather  
-                  name='plus'
-                  size={75}
-                  style={dailyQuotesStyle.icon}
-                />
-            </TouchableOpacity>
+          <View style={dailyQuotesStyle.body}>
+              <Quotation quoteData={showingQuote} />
+          </View>
 
-            <TouchableOpacity
-              style={dailyQuotesStyle.rightBtn}
-              onPress={()=>{
-                  navigation.navigate('Settings')
-                }}
-            >
-                <Feather  
-                    name='settings'
+          <Animatable.View 
+            style={dailyQuotesStyle.footer}
+            animation='bounceInUp'
+          >
+              
+              <TouchableOpacity
+                style={dailyQuotesStyle.leftBtn}
+              >
+                  <Feather  
+                    name='share'
                     size={30}
                     style={dailyQuotesStyle.icon}
                   />
-            </TouchableOpacity>
+              </TouchableOpacity>
 
-        </Animatable.View>
+              <TouchableOpacity
+                style={dailyQuotesStyle.midBtn}
+                onPress={()=>{
+                  getQuoteHandller()
+                }}
+              >
+                  <Feather  
+                    name='plus'
+                    size={75}
+                    style={dailyQuotesStyle.icon}
+                  />
+              </TouchableOpacity>
 
-        </ImageBackground>
-    </View>
-    );
-  }
+              <TouchableOpacity
+                style={dailyQuotesStyle.rightBtn}
+                onPress={()=>{
+                    navigation.navigate('Settings')
+                  }}
+              >
+                  <Feather  
+                      name='settings'
+                      size={30}
+                      style={dailyQuotesStyle.icon}
+                    />
+              </TouchableOpacity>
 
-  else{
-    return(
-        <DataNull />
+          </Animatable.View>
+
+          </ImageBackground>
+      </View>
       );
+    }else{
+      return(
+        <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
+            <ActivityIndicator size='large' />
+        </View>
+      );
+    }
   }
-}
