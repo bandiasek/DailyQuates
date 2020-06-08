@@ -60,6 +60,7 @@ export default function Settings({navigation }) {
           </Text>
           <TouchableOpacity
             style={settingsStyle.sectionBtn}
+            onPress={()=>{reset()}}
           >
             <Feather 
               name='corner-down-right'
@@ -81,6 +82,7 @@ export default function Settings({navigation }) {
           </Text>
           <TouchableOpacity
             style={settingsStyle.sectionBtn}
+            onPress={()=>{logout()}}
           >
             <Feather 
               name='log-out'
@@ -101,6 +103,7 @@ export default function Settings({navigation }) {
       >
         <TouchableOpacity
           style={settingsStyle.backBtn}
+          onPress={()=>{navigation.goBack()}}
         >
         <Feather 
               name='chevron-left'
